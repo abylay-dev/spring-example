@@ -14,8 +14,8 @@ public class ExampleController {
     }
 
     @PostMapping("/second")
-    public String secondPage(@RequestParam("fname") String name, @RequestParam("lname") String lastname, @RequestParam("age") Integer age) {
-        System.out.println(name + " " + lastname + " " + age);
+    public String secondPage(@RequestParam("fname") String firstname, @RequestParam("lname") String lastname, @RequestParam("age") Integer age) {
+        System.out.println(firstname + " " + lastname + " " + age);
         return "about";
     }
 
