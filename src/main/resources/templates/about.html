@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>About</title>
@@ -7,6 +7,8 @@
 <body>
 <img src="https://media.springernature.com/lw703/springer-static/image/art%3A10.1038%2F540500a/MediaObjects/41586_2016_Article_BF540500a_Figi_HTML.jpg"
      alt="some picture">
+<br>
+<h1 th:text="'Welcome to About page, ' + ${person.getFirstname()} + ' ' + ${person.getLastname()}"></h1>
 <a href="/first-page">Go back</a>
 </body>
 </html>
