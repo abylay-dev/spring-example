@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service //@Component @Repository
 public class PersonServiceImpl implements PersonService {
     @Override
     public List<Person> getAllPerson() {

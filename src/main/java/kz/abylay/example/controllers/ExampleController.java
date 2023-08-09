@@ -47,3 +47,10 @@ public class ExampleController {
     //changed from github
 
 }
+
+
+//@Bean, @Controller, @Component, @Service, @Repository, @Autowired, @RequestMapping(zaprosy)
+//Spring container, IoC(Inversion of Control)
+
+//@Bean
+//Person p = new Person();
