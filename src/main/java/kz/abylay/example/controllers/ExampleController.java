@@ -3,18 +3,21 @@ package kz.abylay.example.controllers;
 import kz.abylay.example.models.Person;
 import kz.abylay.example.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 public class ExampleController {
-    @Autowired
     private PersonService personService;
+
+    public ExampleController(PersonService pService) {
+        this.personService = pService;
+    }
+
 
     @GetMapping("/first-page")
     public String welcomePage(Model model) {
@@ -43,6 +46,26 @@ public class ExampleController {
 //        model.addAttribute("person", p);
         return "about";
     }
+
+    @GetMapping("/add-person-page")
+    public String getAddPersonPage() {
+        return "addPerson";
+    }
+
+    @PostMapping("/add-person")
+    public String addPerson(@RequestParam("fname") String firstname,
+                            @RequestParam("lname") String lastname,
+                            @RequestParam("age") Integer age) {
+        personService.addPerson(new Person(null, firstname, lastname, age));
+        return "redirect:/first-page";
+    }
+
+    @GetMapping("/delete")
+    public String deletePersonById(@RequestParam("idshka") Integer id) {
+        personService.deletePersonById(id);
+        return "redirect:/first-page";
+    }
+
 
     //changed from github
 

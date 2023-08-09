@@ -17,8 +17,8 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person getPersonById(Integer id) {
         List<Person> personList = getAllPerson();
-        for (Person p : personList){
-            if (p.getId() == id){
+        for (Person p : personList) {
+            if (p.getId() == id) {
                 return p;
             }
         }
@@ -37,6 +37,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void deletePersonById(Integer id) {
-
+        DBManager.deletePersonById(id);
     }
 }
