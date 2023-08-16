@@ -32,7 +32,10 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void updatePerson(Person p) {
-
+        Person fromDb = getPersonById(p.getId());
+        if (fromDb != null) {
+            DBManager.updatePerson(p);
+        }
     }
 
     @Override

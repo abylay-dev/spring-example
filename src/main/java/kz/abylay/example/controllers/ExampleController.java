@@ -60,6 +60,26 @@ public class ExampleController {
         return "redirect:/first-page";
     }
 
+    @GetMapping("/update/{id}")
+    public String getUpdatePage(@PathVariable("id") Integer id, Model model) {
+        Person p = personService.getPersonById(id);
+        if (p == null) {
+            return "error";
+        }
+        model.addAttribute("person", p);
+        return "editPerson";
+    }
+
+    @PostMapping("update-person")
+    public String updatePerson(@RequestParam("id") Integer id,
+                               @RequestParam("fname") String firstname,
+                               @RequestParam("lname") String lastname,
+                               @RequestParam("age") Integer age) {
+        Person p = new Person(id, firstname, lastname, age);
+        personService.updatePerson(p);
+        return "redirect:/first-page";
+    }
+
     @GetMapping("/delete")
     public String deletePersonById(@RequestParam("idshka") Integer id) {
         personService.deletePersonById(id);

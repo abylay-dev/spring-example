@@ -24,6 +24,14 @@ public class DBManager {
         personList.add(p);
     }
 
+    public static void updatePerson(Person p) {
+        for (Person person : personList) {
+            if (person.getId() == p.getId()) {
+                personList.set(personList.indexOf(person), p);
+            }
+        }
+    }
+
     public static void deletePersonById(Integer id) {
         Iterator<Person> it = personList.iterator();
         while (it.hasNext()) {
