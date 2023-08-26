@@ -16,6 +16,13 @@
             <label for="age" class="form-label">Age:</label><br>
             <input type="number" id="age" name="age" class="form-control" placeholder="60"><br><br>
         </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age:</label><br>
+            <select name="companyId" class="form-select" aria-label="Default select example">
+                <option th:each="company: ${companies}" th:text="${company.getName()}" th:value="${company.getId()}"></option>
+            </select>
+            <br><br>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

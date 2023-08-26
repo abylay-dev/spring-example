@@ -2,6 +2,8 @@ package kz.abylay.example.controllers;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import kz.abylay.example.DBManager;
+import kz.abylay.example.models.Company;
 import kz.abylay.example.models.Person;
 import kz.abylay.example.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,15 +58,20 @@ public class ExampleController {
     }
 
     @GetMapping("/add-person-page")
-    public String getAddPersonPage() {
+    public String getAddPersonPage(Model model) {
+        List<Company> companies = DBManager.getCompanies();
+        model.addAttribute("companies", companies);
         return "addPerson";
     }
 
     @PostMapping("/add-person")
     public String addPerson(@RequestParam("fname") String firstname,
                             @RequestParam("lname") String lastname,
-                            @RequestParam("age") Integer age) {
-        personService.addPerson(new Person(null, firstname, lastname, age));
+                            @RequestParam("age") Integer age,
+                            @RequestParam("companyId") Integer companyId) {
+        System.out.println("companyId=" + companyId);
+        Company company = DBManager.getCompanyById(companyId);
+        personService.addPerson(new Person(null, firstname, lastname, age, company));
         return "redirect:/first-page";
     }
 
@@ -83,7 +90,7 @@ public class ExampleController {
                                @RequestParam("fname") String firstname,
                                @RequestParam("lname") String lastname,
                                @RequestParam("age") Integer age) {
-        Person p = new Person(id, firstname, lastname, age);
+        Person p = new Person(id, firstname, lastname, age, null);
         personService.updatePerson(p);
         return "redirect:/first-page";
     }
