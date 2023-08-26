@@ -1,5 +1,7 @@
 package kz.abylay.example.controllers;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import kz.abylay.example.models.Person;
 import kz.abylay.example.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.http.HttpResponse;
 import java.util.List;
 
 @Controller
@@ -20,7 +23,12 @@ public class ExampleController {
 
 
     @GetMapping("/first-page")
-    public String welcomePage(Model model) {
+    public String welcomePage(Model model, HttpServletResponse response) {
+        Cookie cookie = new Cookie("some_data", "123");
+        cookie.setMaxAge(20);
+        cookie.setValue("abylay");
+        cookie.setAttribute("asdf", "zxcv");
+        response.addCookie(cookie);
         List<Person> personList = personService.getAllPerson();
         model.addAttribute("people", personList);
         return "home";

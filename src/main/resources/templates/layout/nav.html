@@ -10,10 +10,16 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a style="color:orange;" class="nav-link active" aria-current="page"
-                       th:href="@{'/first-page'}">Home</a>
+                       th:href="@{'/first-page'}" th:text="#{label.home}"></a>
                 </li>
                 <li class="nav-item">
                     <a style="color:blue;" class="nav-link" th:href="@{'/add-person-page'}">Add Person</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color:blue;" class="nav-link" th:href="@{'?lng=ru'}">RU</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color:blue;" class="nav-link" th:href="@{'?lng=en'}">EN</a>
                 </li>
             </ul>
         </div>
