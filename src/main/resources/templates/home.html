@@ -19,7 +19,7 @@
             <td th:text="${person.firstname}"></td>
             <td th:text="${person.getLastname()}"></td>
             <td th:text="${person.getAge()}"></td>
-            <td th:text="${person.getCompany().getName()}"></td>
+            <td>EMPTY</td>
             <td>
                 <a th:href="@{'/update/' + ${person.id}}" class="btn btn-info mx-2">Update</a>
 

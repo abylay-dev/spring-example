@@ -71,7 +71,7 @@ public class ExampleController {
                             @RequestParam("companyId") Integer companyId) {
         System.out.println("companyId=" + companyId);
         Company company = DBManager.getCompanyById(companyId);
-        personService.addPerson(new Person(null, firstname, lastname, age, company));
+        personService.addPerson(new Person(null, firstname, lastname, age));
         return "redirect:/first-page";
     }
 
@@ -90,7 +90,7 @@ public class ExampleController {
                                @RequestParam("fname") String firstname,
                                @RequestParam("lname") String lastname,
                                @RequestParam("age") Integer age) {
-        Person p = new Person(id, firstname, lastname, age, null);
+        Person p = new Person(id, firstname, lastname, age);
         personService.updatePerson(p);
         return "redirect:/first-page";
     }

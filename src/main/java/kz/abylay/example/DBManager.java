@@ -23,9 +23,9 @@ public class DBManager {
         companies.add(new Company(3, "Meta"));
         companies.add(new Company(4, "Kaspi"));
 
-        personList.add(new Person(id++, "Dimash", "asdf", 654, companies.get(2)));
-        personList.add(new Person(id++, "Perizat", "asdf", 654, companies.get(3)));
-        personList.add(new Person(id++, "Abylay", "asdf", 654, companies.get(0)));
+//        personList.add(new Person(id++, "Dimash", "asdf", 654, companies.get(2)));
+//        personList.add(new Person(id++, "Perizat", "asdf", 654, companies.get(3)));
+//        personList.add(new Person(id++, "Abylay", "asdf", 654, companies.get(0)));
     }
 
     public static void addPerson(Person p) {
