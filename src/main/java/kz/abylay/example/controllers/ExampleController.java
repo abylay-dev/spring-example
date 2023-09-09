@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import kz.abylay.example.DBManager;
 import kz.abylay.example.models.Company;
 import kz.abylay.example.models.Person;
+import kz.abylay.example.services.CompanyService;
 import kz.abylay.example.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,9 +19,11 @@ import java.util.List;
 @Controller
 public class ExampleController {
     private PersonService personService;
+    private CompanyService companyService;
 
-    public ExampleController(PersonService pService) {
+    public ExampleController(PersonService pService, CompanyService companyService) {
         this.personService = pService;
+        this.companyService = companyService;
     }
 
 
@@ -59,7 +62,7 @@ public class ExampleController {
 
     @GetMapping("/add-person-page")
     public String getAddPersonPage(Model model) {
-        List<Company> companies = DBManager.getCompanies();
+        List<Company> companies = companyService.getAllCompany();
         model.addAttribute("companies", companies);
         return "addPerson";
     }
@@ -70,11 +73,15 @@ public class ExampleController {
                             @RequestParam("age") Integer age,
                             @RequestParam("companyId") Integer companyId) {
         System.out.println("companyId=" + companyId);
-        Company company = DBManager.getCompanyById(companyId);
-        personService.addPerson(new Person(null, firstname, lastname, age));
-        return "redirect:/first-page";
+        Company company = companyService.getCompanyById(companyId);
+        if (company != null) {
+            personService.addPerson(new Person(null, firstname, lastname, age, company));
+            return "redirect:/first-page";
+        }
+        return "redirect:/add-person-page?error";
     }
 
+    //todo update in frontend
     @GetMapping("/update/{id}")
     public String getUpdatePage(@PathVariable("id") Integer id, Model model) {
         Person p = personService.getPersonById(id);
@@ -89,16 +96,29 @@ public class ExampleController {
     public String updatePerson(@RequestParam("id") Integer id,
                                @RequestParam("fname") String firstname,
                                @RequestParam("lname") String lastname,
-                               @RequestParam("age") Integer age) {
-        Person p = new Person(id, firstname, lastname, age);
-        personService.updatePerson(p);
-        return "redirect:/first-page";
+                               @RequestParam("age") Integer age,
+                               @RequestParam("companyId") Integer companyId) {
+        Company company = companyService.getCompanyById(companyId);
+        if (company != null) {
+            Person p = new Person(id, firstname, lastname, age, company);
+            personService.updatePerson(p);
+            return "redirect:/first-page";
+        }
+        return "redirect:/update/" + id;
     }
 
     @GetMapping("/delete")
     public String deletePersonById(@RequestParam("idshka") Integer id) {
         personService.deletePersonById(id);
         return "redirect:/first-page";
+    }
+
+    @PostMapping("/login")
+    public String auth(@RequestParam("login") String login, @RequestParam("password") String password){
+        if (login.equals("admin") && password.equals("admin123")){
+            return "redirect:/first-page";
+        }
+        return "login-page";
     }
 
 

@@ -17,5 +17,6 @@ public class Person { //person_entity
     private String lastname;
     private Integer age;
 
-//    private Company company;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Company company;
 }

@@ -17,7 +17,7 @@
             <input type="number" id="age" name="age" class="form-control" placeholder="60"><br><br>
         </div>
         <div class="mb-3">
-            <label for="age" class="form-label">Age:</label><br>
+            <label for="age" class="form-label">Company:</label><br>
             <select name="companyId" class="form-select" aria-label="Default select example">
                 <option th:each="company: ${companies}" th:text="${company.getName()}" th:value="${company.getId()}"></option>
             </select>
