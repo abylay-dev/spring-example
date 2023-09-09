@@ -1,6 +1,7 @@
 package kz.abylay.example.services.impl;
 
 import kz.abylay.example.DBManager;
+import kz.abylay.example.models.Course;
 import kz.abylay.example.models.Person;
 import kz.abylay.example.repository.PersonRepository;
 import kz.abylay.example.services.PersonService;
@@ -44,5 +45,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void deletePersonById(Integer id) {
         personRepository.deleteById(id);
+    }
+
+    @Override
+    public void addCourse(Person p, Course course) {
+        p.getCourses().add(course);
+        this.updatePerson(p);
     }
 }

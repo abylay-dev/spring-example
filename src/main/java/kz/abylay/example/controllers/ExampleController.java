@@ -4,8 +4,10 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import kz.abylay.example.DBManager;
 import kz.abylay.example.models.Company;
+import kz.abylay.example.models.Course;
 import kz.abylay.example.models.Person;
 import kz.abylay.example.services.CompanyService;
+import kz.abylay.example.services.CourseService;
 import kz.abylay.example.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,10 +22,12 @@ import java.util.List;
 public class ExampleController {
     private PersonService personService;
     private CompanyService companyService;
+    private CourseService courseService;
 
-    public ExampleController(PersonService pService, CompanyService companyService) {
+    public ExampleController(PersonService pService, CompanyService companyService, CourseService courseService) {
         this.personService = pService;
         this.companyService = companyService;
+        this.courseService = courseService;
     }
 
 
@@ -84,11 +88,13 @@ public class ExampleController {
     //todo update in frontend
     @GetMapping("/update/{id}")
     public String getUpdatePage(@PathVariable("id") Integer id, Model model) {
+        List<Course> courses = courseService.getAllCourses();
         Person p = personService.getPersonById(id);
         if (p == null) {
             return "error";
         }
         model.addAttribute("person", p);
+        model.addAttribute("courses", courses);
         return "editPerson";
     }
 
@@ -122,6 +128,14 @@ public class ExampleController {
     }
 
 
+    @GetMapping("/add-course")
+    public String addCourse(@RequestParam("person_id") Integer personId,
+                            @RequestParam("course_id") Integer courseId){
+        Course course = courseService.getById(courseId);
+        Person person = personService.getPersonById(personId);
+        personService.addCourse(person, course);
+        return "redirect:/update/" + personId;
+    }
     //changed from github
 
 }
