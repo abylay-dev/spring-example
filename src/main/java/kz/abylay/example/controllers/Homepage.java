@@ -20,9 +20,9 @@ import java.util.List;
 
 @Controller
 public class Homepage {
-    private CarsService carsService;
-    private CountryService countryService;
-    private MarketplaceService marketplaceService;
+    private final CarsService carsService;
+    private final CountryService countryService;
+    private final MarketplaceService marketplaceService;
 
     public Homepage(CarsService carsService, CountryService countryService, MarketplaceService marketplaceService){
         this.carsService = carsService;
@@ -44,7 +44,6 @@ public class Homepage {
         return "carsId";
     }
 
-    private Person p;
     @GetMapping("/")
         public String home(HttpServletResponse response){
         Cookie cookie = new Cookie("date", "1");
@@ -59,7 +58,7 @@ public class Homepage {
     public String second_Page(@RequestParam("login") String login,
                               @RequestParam("password") String password,
                               Model model){
-        p = new Person(login, password);
+        Person p = new Person(login, password);
         System.out.println("login : "  + login + " password : " + password);
         model.addAttribute("person", p);
         List<Cars> carsList = carsService.getAllCars();
