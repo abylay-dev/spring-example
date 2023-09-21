@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_content">
+    <form th:action="@{'/add-cars'}" method="post">
+        <div class="mb-3">
+            <h2>Add Cars page</h2>
+            <label for="name" class="form-label">Car :</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Bugatti">
+        </div>
+        <div class="mb-3">
+            <label for="model" class="form-label">Model :</label><br>
+            <input type="text" id="model" name="model" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="tank" class="form-label">Tank :</label>
+            <input type="number" id="tank" name="tank" class="form-control" placeholder="6">
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country :</label>
+            <select name="countryId" class="form-select" aria-label="Default select example" id="country">
+                <option th:each="country: ${countries}" th:text="${country.getNameofcountry()}" th:value="${country.getId()}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Press to submit</button>
+    </form>
+    <a th:href="@{'/secondpage'}">Back to tables</a>
+</div>
+</html>

@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_content">
+    <div class="secondtextandimg">
+        <!--<h1 th:text="'Добро пожаловать, ' + ${person.getLogin()}"></h1>-->
+        <h2>Как купить билеты на самолет Астана — Урумчи выгодно</h2>
+        <p> Вы сможете приобрести самые дешевые авиабилеты Астана — Урумчи,
+            когда планируете путь заранее. На ближайший рейс цена уже зафиксирована,
+            но все последующие могут меняться. Рекомендуем определиться с датой
+            вылета и бронировать билеты как можно раньше, чтобы вышло дешевле.
+
+        <p> Еще один лайфхак для выгодной покупки билетов в Урумчи из Астаны на
+            самолет — брать их на будний день. Города находятся друг от друга чуть
+            больше чем в двух часах прямого полета, поэтому с появлением рейса
+            Астана — Урумчи от компании-лоукостера появится возможность разнообразить
+            выходные. Это соответственно отразится на стоимости.
+
+        <p> Кстати, на этапе поиска рейса отображается календарь доступных рейсов.
+            В нем же высвечиваются дни с самыми низкими ценами месяца. Это упрощает
+            процесс планирования путешествий и поездок.
+        </p>
+    </div>
+    <a href="/">Go back</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Model</th>
+            <th scope="col">Tank</th>
+            <th scope="col">Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car: ${cars}">
+            <th scope="row" th:text="${car.id}"></th>
+            <td th:text="${car.name}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.getTank()}"></td>
+            <td th:text="${car.getCountry().getNameofcountry()}"></td>
+            <td>
+                <a th:href="@{'/update/' + ${car.id}}" class="btn btn-info mx-2">Update</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/add-cars-page'}">Add Cars</a>
+</div>
+</html>
