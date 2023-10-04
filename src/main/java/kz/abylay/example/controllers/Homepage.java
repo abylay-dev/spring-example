@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Controller("/")//todo
+@Controller("/")
 public class Homepage {
     private final CarsService carsService;
     private final CountryService countryService;
@@ -56,7 +56,7 @@ public class Homepage {
 
 
 
-    @PostMapping("/second")
+    /*@PostMapping("/second")
     public String second_Page(@RequestParam("login") String login,
                               @RequestParam("password") String password,
                               Model model){
@@ -66,7 +66,7 @@ public class Homepage {
         List<Cars> carsList = carsService.getAllCars();
         model.addAttribute("cars",carsList);
         return "table_cars";}
-
+*/
     @GetMapping("/update/{id}")
     public String getUpdatePage(@PathVariable("id") Integer id, Model model){
         Cars c = carsService.getCarsById(id);
@@ -97,18 +97,9 @@ public class Homepage {
         return "redirect:/table-cars";
     }
 
-    @PostMapping("/registration")
-    public String auth(@RequestParam("login") String login,
-                       @RequestParam("password") String password){
-        if (login.equals("admin") && password.equals("admin123")){
-            return "redirect:/table-cars";
-        }
-        return "redirect:/registration-page.html";
-    }
-
     @GetMapping("/login")
     public String login(){
-        return "registration-page";
+        return "login";
     }
 
     @GetMapping("/bmw-information")

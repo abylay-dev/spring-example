@@ -2,10 +2,11 @@ package kz.abylay.example.services;
 
 
 import kz.abylay.example.model.Users;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
     List<Users> getAllUsers();
     Users getUserById(Integer id);
 

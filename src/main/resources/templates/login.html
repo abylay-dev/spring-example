@@ -10,21 +10,21 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="">
+                <form th:action="@{/auth}" method="post">
                     <h1>Login</h1>
                         <div class="inputbox">
                             <?xml version="1.0" ?>
                             <svg baseProfile="tiny" height="32px" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Guides__x26__Forms"/><g id="Icons"><g><path d="M23,14v-2c0-3.866-3.134-7-7-7s-7,3.134-7,7v2H7v13h18V14H23z M11,12c0-2.757,2.243-5,5-5c2.757,0,5,2.243,5,5v2H11V12z     M23,25H9v-9h14V25z"/><path d="M15,20.611V23h2v-2.389c0.305-0.275,0.5-0.668,0.5-1.111c0-0.828-0.672-1.5-1.5-1.5s-1.5,0.672-1.5,1.5    C14.5,19.943,14.695,20.336,15,20.611z"/></g></g></svg>
-                            <input type="email" required>
-                            <label for="email">Email</label>
+                            <label for="username">Email</label>
+                            <input type="email" id="username" name="email" required>
                         </div>
                     <div class="inputbox">
                         <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
                         <svg width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 7L10.94 11.3375C11.5885 11.7428 12.4115 11.7428 13.06 11.3375L20 7M5 18H19C20.1046 18 21 17.1046 21 16V8C21 6.89543 20.1046 6 19 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <input type="password" required>
-                        <label for="email">Password</label>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
                     </div>
                     <div class="forget">
                         <label for="">
