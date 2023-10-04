@@ -2,57 +2,26 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/main}">
 <div layout:fragment="main_content">
-    <div class="textandimg">
-        <div class="image">
-            <img src="https://bolerotour.ru/upload/pl_plugin_8/urumchi-1_5a9a86bb411cf.jpg">
-        </div>
-        <div class="text">
-            <h2>Авиабилеты Астана — Урумчи (Китай)</h2>
-
-            <p>Компания FlyArystan запускает прямое авиасообщение между Казахстаном и Китаем.
-            С 21 сентября 2023 года еженедельно будет отправляться рейс Астана — Урумчи.
-            Расписание предусматривает полеты в направлении NQZ — URC по четвергам и
-            воскресеньям.
-
-            <h2>Астана — Урумчи: цена на авиабилеты</h2>
-
-            <p>Узнать, сколько стоит билет на самолет из Астаны в Урумчи, можно непосредственно
-            на сайте или в мобильном приложении FlyArystan.
+    <div class="headerr"></div>
+    <div class="rows">
+        <div class="coll">
             <br>
-            <p>Зайдите на главную страницу. В графе «Откуда» выберите Астану, а «Куда» — Урумчи.
-            Далее отметьте дату отправки туда и обратно, если понадобится. Нажмите на значок
-            поиска. В результате вы увидите расписание авиарейсов Астана — Урумчи и сразу
-            узнаете цену.</p>
+            <p class="namepage">Some cars</p>
+            <p>A car, or an automobile, is a motor vehicle with wheels. Most definitions of cars say that they run primarily on roads, seat one to eight people,
+               have four wheels, and mainly transport people, not cargo.
+               French inventor Nicolas-Joseph Cugnot built the first steam-powered road vehicle in 1769, while French-born Swiss inventor François Isaac de Rivaz
+               designed and constructed the first internal combustion-powered automobile in 1808. The modern car - a practical, marketable automobile for everyday
+               use - was invented in 1886, when German inventor Carl Benz patented his Benz Patent-Motorwagen. Commercial cars became widely available during the
+               20th century. One of the first cars affordable by the masses was the 1908 Model T, an American car manufactured by the Ford Motor Company. Cars
+               were rapidly adopted in the US, where they replaced horse-drawn carriages. In Europe and other parts of the world, demand for automobiles did
+               not increase until after World War II. The car is considered an essential part of the developed economy.</p>
         </div>
-    </div>
-        <div class="nextpage">
-            <button>
-                <a href="/secondpage">
-                    След страница
-                </a>
-            </button>
+        <div class="coll">
+            <div class="cards cards1"><a th:href="@{'/bmw-information'}"></a></div>
+            <div class="cards cards2"><a th:href="@{'/mercedes-information'}"></a></div>
+            <div class="cards cards3"><a th:href="@{'/audi-information'}"></a></div>
+            <div class="cards cards4"><a th:href="@{'/porsche-information'}"></a></div>
         </div>
-    <hr>
-    <div class="blank">
-        <form action="/login" method="post">
-            <fieldset>
-                <legend>Вход в кабинет:</legend>
-                Логин:<br>
-                <input type="login" name="login" placeholder="Admin"><br>
-                Пароль:<br>
-                <input type="password" name="password" placeholder="Password"><br><br>
-                <input type="submit" value="Войти">
-                <input name="guruweba_example_reset" type="reset" value="Очистить поля" />
-            </fieldset>
-        </form>
-    </div>
-    <div class="images">
-        <img src="https://chinalogist.ru/sites/default/files/styles/magazine_full/public/3_146.jpg?itok=216tuwZg" width="180px" height="150px">
-        <img src="https://admomsk.ru/image/image_gallery?img_id=974335" width="180px" height="150px">
-        <img src="https://planetofhotels.com/guide/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/urumchi-2.jpg" width="180px" height="150px">
-        <img src="https://www.gazeta.uz/media/img/2023/06/cPCIM816874320399068_b.jpg" width="180px" height="150px">
-        <img src="https://s9.travelask.ru/system/cities/share_images/000/013/979/cover/Outer_Ring_Road_of_Urumqi.jpg?1484200153" width="180px" height="150px">
     </div>
 </div>
-
 </html>

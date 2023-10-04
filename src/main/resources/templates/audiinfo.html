@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_content">
+    <div class="rows1">
+        <div class="coll">
+            <p class="red">About Audi</p>
+            <img src="https://cdn.shrm.org/image/upload/c_crop%2ch_705%2cw_1254%2cx_0%2cy_97/c_fit%2cq_auto%2cw_767/v1/Organizational%20and%20Employee%20Development/Audi_of_America2_ix3y4m.webp?databtoa=eyIxNng5Ijp7IngiOjAsInkiOjk3LCJ4MiI6MTI1NCwieTIiOjgwMiwidyI6MTI1NCwiaCI6NzA1fX0%3d" th:align="right" th:width="380" th:height="256" alt="audi-factory">
+            <p> Audi AG (German: [ˈaʊ̯di ʔaːˈɡeː] OW-dee) is a German automotive manufacturer of luxury vehicles
+                headquartered in Ingolstadt, Bavaria, Germany. As a subsidiary of its parent company, the
+                Volkswagen Group, Audi produces vehicles in nine production facilities worldwide.
+
+                The origins of the company are complex, dating back to the early 20th century and the initial
+                enterprises (Horch and the Audiwerke) founded by engineer August Horch (1868–1951). Two other
+                manufacturers (DKW and Wanderer) also contributed to the foundation of Auto Union in 1932.
+                The modern Audi era began in the 1960s, when Auto Union was acquired by Volkswagen from
+                Daimler-Benz. After relaunching the Audi brand with the 1965 introduction of the Audi F103
+                series, Volkswagen merged Auto Union with NSU Motorenwerke in 1969, thus creating the
+                present-day form of the company.
+
+                The company name is based on the Latin translation of the surname of the founder, August Horch.
+                Horch, meaning "listen", becomes audi in Latin. The four rings of the Audi logo each represent
+                one of four car companies that banded together to create Audi's predecessor company, Auto Union.
+                Audi's slogan is Vorsprung durch Technik, which is translated as "Progress through Technology".
+                Audi, along with German brands BMW and Mercedes-Benz, is among the best-selling luxury automobile
+                brands in the world.
+
+            <p class="red">Branding</p>
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Audi_Logo.svg/1024px-Audi_Logo.svg.png" th:align="right" th:width="256" height="128">
+            <p>The Audi emblem is four overlapping rings that represent the four marques of Auto Union.
+                The Audi emblem symbolises the amalgamation of Audi with DKW, Horch and Wanderer: the first
+                ring from the left represents Audi, the second represents DKW, third is Horch, and the fourth
+                and last ring Wanderer. The design is popularly believed to have been the idea of Klaus von
+                Oertzen, the director of sales at Wanderer – when Berlin was chosen as the host city for the
+                1936 Summer Olympics and that a form of the Olympic logo symbolized the newly established Auto
+                Union's desire to succeed. Somewhat ironically, the International Olympic Committee later sued
+                Audi in the International Trademark Court in 1995, where they lost.
+
+                The original "Audi" script, with the distinctive slanted tails on the "A" and "d" was created
+                for the historic Audi company in 1920 by the famous graphic designer Lucian Bernhard, and was
+                resurrected when Volkswagen revived the brand in 1965. Following the demise of NSU in 1977,
+                less prominence was given to the four rings, in preference to the "Audi" script encased within
+                a black (later red) ellipse, and was commonly displayed next to the Volkswagen roundel when the
+                two brands shared a dealer network under the V.A.G banner. The ellipse (known as the Audi Oval)
+                was phased out after 1994, when Audi formed its own independent dealer network, and prominence
+                was given back to the four rings – at the same time Audi Sans (a derivative of Univers) was
+                adopted as the font for all marketing materials, corporate communications and was also used in
+                the vehicles themselves.
+            </p>
+            <br>
+            <div class="button-pos">
+                <a href="" class="sliding-button" th:href="@{'/'}">Back to main page</a>
+                <a href="" class="sliding-button" th:href="@{'/mercedes-information'}">Previous car</a>
+                <a href="" class="sliding-button" th:href="@{'/update/3'}">Update cars</a>
+                <a href="" class="sliding-button" th:href="@{'/porsche-information'}">Next car</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>
+</html>

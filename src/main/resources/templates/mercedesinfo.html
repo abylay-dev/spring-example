@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_content">
+    <div class="rows1">
+        <div class="coll">
+            <p class="red">About Mercedes</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Stuttgart%2C_Germany_%283431696457%29.jpg/800px-Stuttgart%2C_Germany_%283431696457%29.jpg" th:align="right" th:width="360" th:height="256" alt="mercedes-factory">
+            <p> Mercedes-Benz (German pronunciation: [mɛʁˌtseːdəs ˈbɛnts, -dɛs -] ), commonly referred to
+                as Mercedes and sometimes as Benz, is a German luxury and commercial vehicle automotive brand
+                established in 1926. Mercedes-Benz AG (a Mercedes-Benz Group subsidiary established in 2019)
+                is headquartered in Stuttgart, Baden-Württemberg, Germany. Mercedes-Benz AG produces consumer
+                luxury vehicles and light commercial vehicles badged as Mercedes-Benz. From November 2019
+                onwards, Mercedes-Benz-badged heavy commercial vehicles (trucks and buses) are managed by
+                Daimler Truck, a former part of the Mercedes-Benz Group turned into an independent company
+                in late 2021. In 2018, Mercedes-Benz was the largest brand of premium vehicles in the world,
+                having sold 2.31 million passenger cars.
+
+                The brand's origins lie in Daimler-Motoren-Gesellschaft's 1901 Mercedes and Carl Benz's 1886
+                Benz Patent-Motorwagen, which is widely regarded as the first internal combustion engine in
+                a self-propelled automobile. The slogan for the brand is "the best or nothing".
+
+            <p class="red">Mercedes-AMG</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Mercedes-AMG_logo_%28grey%29.svg/798px-Mercedes-AMG_logo_%28grey%29.svg.png" th:align="right" th:width="360" th:height="40">
+            <p>
+                Mercedes-AMG became a majority-owned division of Mercedes-Benz in 1999. The company was
+                integrated into DaimlerChrysler in 1999, and became Mercedes-Benz AMG on 1 January 1999.
+            </p>
+            <p class="red">Mercedes-Maybach</p>
+            <img src="https://logowik.com/content/uploads/images/maybach.jpg" th:align="right" th:width="164" th:height="120">
+            <p>
+                Daimler's ultraluxury Maybach brand was under the Mercedes-Benz Cars division until December
+                2012, when production was stopped due to decreased sales. It now exists under the Mercedes-Maybach
+                name, with the models being luxury-focused, enhanced models of Mercedes-Benz cars, such as the
+                2016 Mercedes-Maybach S600.The Mercedes-Maybach GLS 600 SUV debuted in November 2019.
+            </p>
+            <p class="red">China</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/BYD_Company%2C_Ltd._-_Logo.svg/1024px-BYD_Company%2C_Ltd._-_Logo.svg.png" th:align="right" th:width="110" th:height="110">
+            <p>
+                Daimler partnered with BYD Auto to make and sell a battery-electric car called Denza in China.
+                In 2016, Daimler announced plans to sell Mercedes-Benz-badged fully electric battery cars in
+                China. Beijing Benz is a joint venture with the BAIC Group to produce the Mercedes-Benz branded
+                cars in China.
+            </p>
+                <br>
+            <div class="button-pos">
+                <a href="" class="sliding-button" th:href="@{'/'}">Back to main page</a>
+                <a href="" class="sliding-button" th:href="@{'/bmw-information'}">Previous car</a>
+                <a href="" class="sliding-button" th:href="@{'/update/2'}">Update cars</a>
+                <a href="" class="sliding-button" th:href="@{'/audi-information'}">Next car</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>
+</html>

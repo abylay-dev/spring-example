@@ -1,46 +1,10 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" style="color: aquamarine" aria-current="page" th:href="@{'/'}" th:text="#{label.home}">Home</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Actions</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" th:href="@{'/add-cars-page'}">Add Cars</a></li>
-                    <li><a class="dropdown-item" th:href="@{'/delete'}">Delete Cars</a></li>
-                    <li><a class="dropdown-item" th:href="@{'/update/1'}">Update Cars</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/secondpage'}">Cars table</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'?lng=ru'}">RU</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'?lng=en'}">EN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-            </li>
-        </ul>
-        <!--<div>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a style="color:indigo" class="nav-link btn btn-outline-dark" th:href="@{'/login'}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color:violet" class="nav-link btn btn-outline-dark" href="JavaScript: void(0);"
-                       onclick="document.getElementById('logout').submit()">Logout</a>
-                </li>
-                <form th:action="@{'/logout'}" method="post" id="logout"></form>
+    <div class="navbar">
+        <img src="/images/icon.png" class="logo" alt="image not found">
+        <nav>
+            <ul>
+                <li><a th:href="@{'/'}">Home</a></li>
+                <li><a th:href="@{'/table-cars'}">Table cars</a></li>
+                <li><a th:href="@{'/login'}">Login</a></li>
             </ul>
-        </div>-->
+        </nav>
     </div>
-</nav>
-
-<div class="spacer" style="height: 2rem;"></div>

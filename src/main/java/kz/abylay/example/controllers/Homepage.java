@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Controller
+@Controller("/")//todo
 public class Homepage {
     private final CarsService carsService;
     private final CountryService countryService;
@@ -30,11 +30,11 @@ public class Homepage {
         this.marketplaceService = marketplaceService;
     }
 
-    @GetMapping("/secondpage")
+    @GetMapping("/table-cars")
     public String listPage(Model model){
         List<Cars> carsList = carsService.getAllCars();
         model.addAttribute("cars",carsList);
-        return "second_page";
+        return "table_cars";
     }
 
     @GetMapping("/carlist")
@@ -54,6 +54,8 @@ public class Homepage {
         return "index";
         }
 
+
+
     @PostMapping("/second")
     public String second_Page(@RequestParam("login") String login,
                               @RequestParam("password") String password,
@@ -63,7 +65,7 @@ public class Homepage {
         model.addAttribute("person", p);
         List<Cars> carsList = carsService.getAllCars();
         model.addAttribute("cars",carsList);
-        return "second_page";}
+        return "table_cars";}
 
     @GetMapping("/update/{id}")
     public String getUpdatePage(@PathVariable("id") Integer id, Model model){
@@ -84,7 +86,7 @@ public class Homepage {
         if (country != null){
             Cars c = new Cars(id, name, model, tank, country);
             carsService.updateCars(c);
-            return "redirect:/secondpage";
+            return "redirect:/table-cars";
         }
         return "redirect:/update/" + id;
     }
@@ -92,18 +94,39 @@ public class Homepage {
     @GetMapping("/delete")
     public String deleteCarsById(@RequestParam("carsId") Integer id){
         carsService.deleteCars(id);
-        return "redirect:/secondpage";
+        return "redirect:/table-cars";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/registration")
     public String auth(@RequestParam("login") String login,
                        @RequestParam("password") String password){
         if (login.equals("admin") && password.equals("admin123")){
-            return "redirect:/secondpage";
+            return "redirect:/table-cars";
         }
-        return "redirect:/";
+        return "redirect:/registration-page.html";
     }
 
+    @GetMapping("/login")
+    public String login(){
+        return "registration-page";
+    }
+
+    @GetMapping("/bmw-information")
+    public String bmw(){
+        return "bmwinfo";
+    }
+    @GetMapping("/mercedes-information")
+    public String mercedes(){
+        return "mercedesinfo";
+    }
+    @GetMapping("/audi-information")
+    public String audi(){
+        return "audiinfo";
+    }
+    @GetMapping("/porsche-information")
+    public String porsche(){
+        return "porscheinfo";
+    }
     @GetMapping("/add-cars-page")
     public String getAddCarsPage(Model model) {
         model.addAttribute("countries", countryService.getAllCountry());
@@ -118,7 +141,7 @@ public class Homepage {
         Country country = countryService.getCountryById(countryId);
         if (country != null){
             carsService.addCars(new Cars(null, name, model, tank, country));
-            return "redirect:/secondpage";
+            return "redirect:/table-cars";
         }
         return "redirect:/add-cars-page?error";
     }

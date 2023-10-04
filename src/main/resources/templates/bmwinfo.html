@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_content">
+
+    <div class="rows1">
+        <div class="coll">
+            <p class="red">About Bmw</p>
+            <img src="https://cdn-irec.r-99.com/sites/default/files/product-images/1046677/Q6TpDYTpmW8EWC666f15Pg.JPG" th:align="right" th:width="256" th:height="256" alt="bmw-factory">
+            <p> Bayerische Motoren Werke AG, abbreviated as BMW (German pronunciation: [beɛmˈve]),
+                is a German multinational manufacturer of luxury vehicles and motorcycles headquartered
+                in Munich, Bavaria, Germany. The company was founded in 1916 as a manufacturer of aircraft
+                engines, which it produced from 1917 to 1918 and again from 1933 to 1945.
+
+                Automobiles are marketed under the brands BMW, Mini and Rolls-Royce, and motorcycles are
+                marketed under the brand BMW Motorrad. In 2017, BMW was the world's fourteenth-largest
+                producer of motor vehicles, with 2,279,503 vehicles produced and in 2022 the 7th largest
+                by revenue. The company has significant motor-sport history, especially in touring cars,
+                sports cars, and the Isle of Man TT.
+
+                BMW is headquartered in Munich and produces motor vehicles in Germany, Brazil, China, India,
+                Mexico, the Netherlands, South Africa, the United Kingdom, and the United States. The Quandt
+                family is a long-term shareholder of the company, following investments by the brothers
+                Herbert and Harald Quandt in 1959 that saved BMW from bankruptcy, with the remaining
+                shares owned by the public.
+                <br>
+            <p class="red">Company name</p>
+
+            <p>
+                BMW is an abbreviation for Bayerische Motoren Werke (German pronunciation: [ˈbaɪ̯ʁɪʃə mɔˈtʰɔʁn̩
+                ˈvɛɐ̯kə]). This name is grammatically incorrect (in German, compound words must not contain spaces),
+                which is why the grammatically correct form of the name, Bayerische Motorenwerke (German
+                pronunciation: [ˈbaɪ̯ʁɪʃə mɔˈtʰɔʁn̩vɛɐ̯kə]) has been used in several publications and advertisements
+                in the past. Bayerische Motorenwerke translates into English as Bavarian Motor Works.
+                The suffix AG, short for Aktiengesellschaft, signifies an incorporated entity owned by shareholders,
+                thus akin to "Inc." (US) or PLC, "Public Limited Company" (UK).
+
+                The terms Beemer, Bimmer and Bee-em are sometimes used as slang for BMW in the English language and
+                are sometimes used interchangeably for cars and motorcycles.
+            </p>
+            <div class="button-pos">
+            <a href="" class="sliding-button" th:href="@{'/'}">Back to main page</a>
+            <a href="" class="sliding-button" th:href="@{'/update/1'}">Update cars</a>
+            <a href="" class="sliding-button" th:href="@{'/mercedes-information'}">Next car</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>
+</html>

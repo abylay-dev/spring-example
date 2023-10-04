@@ -4,27 +4,30 @@
 <div layout:fragment="main_content">
     <form th:action="@{'/add-cars'}" method="post">
         <div class="mb-3">
-            <h2>Add Cars page</h2>
-            <label for="name" class="form-label">Car :</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Bugatti">
+            <p class="namepage">Add Cars page</p>
+            <label for="name" class="form-label" style="color: floralwhite">Car :</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Bugatti" th:class="myinput">
         </div>
         <div class="mb-3">
-            <label for="model" class="form-label">Model :</label><br>
-            <input type="text" id="model" name="model" class="form-control">
+            <label for="model" class="form-label" style="color: floralwhite">Model :</label>
+            <input type="text" id="model" name="model" class="form-control" th:class="myinput">
         </div>
         <div class="mb-3">
-            <label for="tank" class="form-label">Tank :</label>
-            <input type="number" id="tank" name="tank" class="form-control" placeholder="6">
+            <label for="tank" class="form-label" style="color: floralwhite">Tank :</label>
+            <input type="number" id="tank" name="tank" class="form-control" placeholder="6" th:class="myinput">
         </div>
         <div class="mb-3">
-            <label for="country" class="form-label">Country :</label>
-            <select name="countryId" class="form-select" aria-label="Default select example" id="country">
+            <label for="country" class="form-label" style="color: floralwhite">Country :</label>
+            <select name="countryId" class="form-select" aria-label="Default select example" id="country" th:class="myinput">
                 <option th:each="country: ${countries}" th:text="${country.getNameofcountry()}" th:value="${country.getId()}"></option>
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Press to submit</button>
+        <div class="button-pos">
+            <button type="submit" class="floating-button">Press to submit</button>
+            <a th:href="@{'/table-cars'}" class="floating-button">Back to tables</a>
+        </div>
     </form>
-    <a th:href="@{'/secondpage'}">Back to tables</a>
+    <br><br>
 </div>
 </html>

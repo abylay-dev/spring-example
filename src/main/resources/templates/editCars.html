@@ -2,46 +2,48 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/main}">
 <div layout:fragment="main_content">
-    <h2>Edit Cars page</h2>
+    <p class="namepage">Edit Cars page</p>
     <form th:action="@{'/update-cars'}" method="post">
         <input type="number" name="id" hidden th:value="${cars.id}">
         <div class="mb-3">
-            <label for="name" class="form-label">Car :</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="BMW"
+            <label for="name" class="form-label" style="color: floralwhite">Car :</label>
+            <input type="text" id="name" name="name" class="form-control" th:class="myinput" placeholder="BMW"
                    th:value="${cars.name}">
         </div>
         <div class="mb-3">
-            <label for="model" class="form-label">Model :</label>
-            <input type="text" id="model" name="model" class="form-control" placeholder="X7"
+            <label for="model" class="form-label" style="color: floralwhite">Model :</label>
+            <input type="text" id="model" name="model" th:class="myinput" class="form-control" placeholder="X7"
                    th:value="${cars.model}">
         </div>
         <div class="mb-3">
-            <label for="tank" class="form-label">Tank :</label>
-            <input type="number" id="tank" name="tank" class="form-control" placeholder="6" th:value="${cars.tank}">
+            <label for="tank" class="form-label" style="color: floralwhite">Tank :</label>
+            <input type="number" id="tank" name="tank" th:class="myinput" class="form-control" placeholder="6" th:value="${cars.tank}">
         </div>
         <div class="mb-3">
-            <label for="country" class="form-label">Country :</label>
-            <select name="countryId" class="form-select" aria-label="Default select example" id="country">
+            <label for="country" class="form-label" style="color: floralwhite">Country :</label>
+            <select name="countryId" class="form-select" th:class="myinput" aria-label="Default select example" id="country">
                 <option th:each="country: ${countries}" th:selected="${country.getId()}==${cars.getCountry().getId()}" th:text="${country.getNameofcountry()}" th:value="${country.getId()}"></option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
-    <a th:href="@{'/delete?carsId=' + ${cars.id}}" class="btn btn-danger">Delete</a>
-    <button type="submit" class="btn btn-primary"><a th:href="@{'/update/'+ ${next_car_id}}">Next car</a></button>
 
+    </form>
+    <div class="button-pos">
+        <button type="submit" class="floating-button">Save Changes</button>
+        <a th:href="@{'/delete?carsId=' + ${cars.id}}" class="floating-button-delete">Delete</a>
+        <a th:href="@{'/update/'+ ${next_car_id}}" type="submit" class="floating-button">Next car</a>
+    </div>
 
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>MarketPlace remove</th>
+            <th style="color: #ffffff">Market place remove</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="market : ${cars.getMarketplaces()}">
-            <td th:text="${market.getMarketname()}"></td>
-            <td> <a th:href="'/remove-marketplace?marketplace_id=' + ${market.getId()} + '&cars_id=' + ${cars.getId()}" class="btn btn-danger mx-2">-</a></td>
+            <td style="color: #ffffff" th:text="${market.getMarketname()}"></td>
+            <td style="color: #ffffff"> <a th:href="'/remove-marketplace?marketplace_id=' + ${market.getId()} + '&cars_id=' + ${cars.getId()}" class="glow-button-delete">-</a></td>
         </tr>
         </tbody>
     </table>
@@ -49,16 +51,17 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>MarketPlace add</th>
+            <th style="color: #ffffff">Market place add</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="market : ${marketplaces}" th:if="${!cars.getMarketplaces().contains(market)}">
-            <td th:text="${market.getMarketname()}"></td>
-            <td> <a th:href="'/add-marketplace?marketplace_id=' + ${market.getId()} + '&cars_id=' + ${cars.getId()}" class="btn btn-success mx-2">+</a></td>
+            <td style="color: #ffffff" th:text="${market.getMarketname()}"></td>
+            <td style="color: #ffffff"> <a th:href="'/add-marketplace?marketplace_id=' + ${market.getId()} + '&cars_id=' + ${cars.getId()}" class="glow-button-plus">+</a></td>
         </tr>
         </tbody>
     </table>
+    <br><br><br>
 </div>
 </html>

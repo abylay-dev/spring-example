@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_content">
+
+    <table class="table table-striped">
+        <div class="colll">
+        <thead>
+        <tr>
+            <th scope="col" style="color: #ffffff">#</th>
+            <th scope="col" style="color: #ffffff">Name</th>
+            <th scope="col" style="color: #ffffff">Model</th>
+            <th scope="col" style="color: #ffffff">Tank</th>
+            <th scope="col" style="color: #ffffff">Country</th>
+        </tr>
+        </thead>
+    </div>
+        <tbody>
+        <tr th:each="car: ${cars}">
+            <th scope="row" th:text="${car.id}" style="color: antiquewhite"></th>
+            <td th:text="${car.name}" style="color: ghostwhite"></td>
+            <td th:text="${car.model}" style="color: floralwhite"></td>
+            <td th:text="${car.getTank()}" style="color: whitesmoke"></td>
+            <td th:text="${car.getCountry().getNameofcountry()}" style="color: white"></td>
+            <td class="colll">
+                <a th:href="@{'/update/' + ${car.id}}" class="glow-button">Update</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="button-pos">
+    <a th:href="@{'/add-cars-page'}" class="floating-button">Add new car</a>
+    <a href="/" class="floating-button">Go back to main page</a>
+    </div>
+</div>
+</html>
