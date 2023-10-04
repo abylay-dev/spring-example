@@ -50,6 +50,11 @@ public class ExampleController {
         return "personById";
     }
 
+    @GetMapping("/login") //http://localhost:8080/person?id=1
+    public String loginPage() {
+        return "login";
+    }
+
     @PostMapping("/second")
     public String secondPage(@RequestParam("fname") String firstname,
                              @RequestParam("lname") String lastname,
@@ -118,15 +123,6 @@ public class ExampleController {
         personService.deletePersonById(id);
         return "redirect:/first-page";
     }
-
-    @PostMapping("/login")
-    public String auth(@RequestParam("login") String login, @RequestParam("password") String password){
-        if (login.equals("admin") && password.equals("admin123")){
-            return "redirect:/first-page";
-        }
-        return "login-page";
-    }
-
 
     @GetMapping("/add-course")
     public String addCourse(@RequestParam("person_id") Integer personId,

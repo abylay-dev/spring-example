@@ -10,5 +10,6 @@ import java.util.List;
 public interface PersonRepository extends JpaRepository<Person, Integer> {
 
     List<Person> findByAgeBetween(int age1, int age2);
+    Person findByEmail(String email);
 
 }

@@ -2,6 +2,7 @@ package kz.abylay.example.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -18,12 +19,17 @@ public class Person { //person_entity
     private String firstname;
     private String lastname;
     private Integer age;
+    private String email;
+    private String password;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Company company;
 
     @ManyToMany
     private List<Course> courses;
+
+    @ManyToOne
+    private Role role;
 
     public Person(Integer id, String firstname, String lastname, Integer age, Company company) {
         this.id = id;
