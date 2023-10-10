@@ -12,9 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service //@Component @Repository
 public class PersonServiceImpl implements PersonService {
@@ -23,8 +21,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getAllPerson() {
-//        return personRepository.findAll();
-        return personRepository.findByAgeBetween(100, 1000);
+        return personRepository.findAll();
+//        return personRepository.findByAgeBetween(100, 1000);
     }
 
     @Override
@@ -58,6 +56,6 @@ public class PersonServiceImpl implements PersonService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Person user = personRepository.findByEmail(username);
         if (user == null) throw new UsernameNotFoundException("User not found");
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), (Collection<? extends GrantedAuthority>) user.getRole());
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), Set.of(user.getRole()));
     }
 }

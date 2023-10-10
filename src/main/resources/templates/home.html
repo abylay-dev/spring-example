@@ -1,5 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       layout:decorate="~{layout/main}">
 <div layout:fragment="main_content">
     <table class="table table-striped">
@@ -10,7 +11,7 @@
             <th scope="col">Lastname</th>
             <th scope="col">Age</th>
             <th scope="col">Company</th>
-            <th scope="col"></th>
+            <th scope="col" sec:authorize="hasAnyRole('ADMIN')"></th>
         </tr>
         </thead>
         <tbody>
@@ -20,7 +21,7 @@
             <td th:text="${person.getLastname()}"></td>
             <td th:text="${person.getAge()}"></td>
             <td th:text="${person.getCompany().name}"></td>
-            <td>
+            <td sec:authorize="hasAnyRole('ADMIN')">
                 <a th:href="@{'/update/' + ${person.id}}" class="btn btn-info mx-2">Update</a>
 
                 <a th:href="@{'/delete?idshka=' + ${person.id}}" class="btn btn-danger">Delete</a>

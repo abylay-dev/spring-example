@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -16,6 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     private final PersonService personService;
@@ -45,15 +47,17 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authConfig -> {
                     authConfig.requestMatchers(HttpMethod.GET, "/login", "/error", "/login-error", "/logout").permitAll();
-                    authConfig.requestMatchers(HttpMethod.GET, "/").hasAnyRole("USER");
+                    authConfig.requestMatchers(HttpMethod.GET, "/").hasAnyRole("USER", "ADMIN");
+                    authConfig.requestMatchers(HttpMethod.GET, "/add-person-page", "/add-person").hasAnyRole( "ADMIN");
                     authConfig.anyRequest().authenticated();
                 })
                 .formLogin(login -> {
                             login.loginPage("/login");
                             login.usernameParameter("email");
                             login.passwordParameter("password");
+                            login.loginProcessingUrl("/auth").permitAll();
                             login.defaultSuccessUrl("/");
-                            login.failureUrl("/login-error");
+                            login.failureUrl("/403");
                         }
                 )
                 .logout(logout -> {
