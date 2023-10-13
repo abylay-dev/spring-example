@@ -9,6 +9,7 @@ import kz.abylay.example.model.Person;
 import kz.abylay.example.services.CarsService;
 import kz.abylay.example.services.CountryService;
 import kz.abylay.example.services.MarketplaceService;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class Homepage {
     }
 
     @GetMapping("/table-cars")
+    @PostAuthorize("hasAnyRole('ADMIN', 'USER' , 'MODERATOR')")
     public String listPage(Model model){
         List<Cars> carsList = carsService.getAllCars();
         model.addAttribute("cars",carsList);
@@ -45,6 +47,7 @@ public class Homepage {
     }
 
     @GetMapping("/")
+    @PostAuthorize("hasAnyRole('ADMIN', 'USER' , 'MODERATOR')")
         public String home(HttpServletResponse response){
         Cookie cookie = new Cookie("date", "1");
         response.addCookie(cookie);
@@ -68,6 +71,7 @@ public class Homepage {
         return "table_cars";}
 */
     @GetMapping("/update/{id}")
+    @PostAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     public String getUpdatePage(@PathVariable("id") Integer id, Model model){
         Cars c = carsService.getCarsById(id);
         model.addAttribute("cars", c);
@@ -77,6 +81,7 @@ public class Homepage {
     }
 
     @PostMapping("/update-cars")
+    @PostAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     public String updateCars(@RequestParam("id") Integer id,
                              @RequestParam("name") String name,
                              @RequestParam("model") String model,
@@ -92,6 +97,7 @@ public class Homepage {
     }
 
     @GetMapping("/delete")
+    @PostAuthorize("hasAnyRole('ADMIN')")
     public String deleteCarsById(@RequestParam("carsId") Integer id){
         carsService.deleteCars(id);
         return "redirect:/table-cars";
@@ -103,28 +109,34 @@ public class Homepage {
     }
 
     @GetMapping("/bmw-information")
+    @PostAuthorize("hasAnyRole('ADMIN', 'USER' , 'MODERATOR')")
     public String bmw(){
         return "bmwinfo";
     }
     @GetMapping("/mercedes-information")
+    @PostAuthorize("hasAnyRole('ADMIN', 'USER' , 'MODERATOR')")
     public String mercedes(){
         return "mercedesinfo";
     }
     @GetMapping("/audi-information")
+    @PostAuthorize("hasAnyRole('ADMIN', 'USER' , 'MODERATOR')")
     public String audi(){
         return "audiinfo";
     }
     @GetMapping("/porsche-information")
+    @PostAuthorize("hasAnyRole('ADMIN', 'USER' , 'MODERATOR')")
     public String porsche(){
         return "porscheinfo";
     }
     @GetMapping("/add-cars-page")
+    @PostAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     public String getAddCarsPage(Model model) {
         model.addAttribute("countries", countryService.getAllCountry());
         return "addCars";
     }
 
     @PostMapping("/add-cars")
+    @PostAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     public String addPerson(@RequestParam("name") String name,
                             @RequestParam("model") String model,
                             @RequestParam("tank") Double tank,
@@ -138,6 +150,7 @@ public class Homepage {
     }
 
     @GetMapping("/add-marketplace")
+    @PostAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     public String addMarketplace(@RequestParam("cars_id")Integer carsId,
                                  @RequestParam("marketplace_id") Integer marketplaceId){
         Marketplace marketplace = marketplaceService.getMarketplaceById(marketplaceId);
@@ -149,6 +162,7 @@ public class Homepage {
 
 
     @GetMapping("/remove-marketplace")
+    @PostAuthorize("hasAnyRole('ADMIN')")
     public String removeMarketplace(@RequestParam("cars_id")Integer carsId,
                                  @RequestParam("marketplace_id") Integer marketplaceId){
         Marketplace marketplace = marketplaceService.getMarketplaceById(marketplaceId);

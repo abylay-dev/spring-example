@@ -1,5 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       layout:decorate="~{layout/main}">
 <div layout:fragment="main_content">
 
@@ -23,7 +24,7 @@
             <td th:text="${car.getTank()}" style="color: whitesmoke"></td>
             <td th:text="${car.getCountry().getNameofcountry()}" style="color: white"></td>
             <td class="colll">
-                <a th:href="@{'/update/' + ${car.id}}" class="glow-button">Update</a>
+                <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/update/' + ${car.id}}" class="glow-button">Update</a>
             </td>
         </tr>
         </tbody>

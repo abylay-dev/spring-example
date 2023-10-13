@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -46,7 +47,6 @@ public class UserServiceImp implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = userRepository.findByEmail(username);
         if (user == null) throw new UsernameNotFoundException("User not found");
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-                (Collection<? extends GrantedAuthority>) user.getRole());
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), Set.of(user.getRole()));
     }
 }

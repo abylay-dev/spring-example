@@ -2,9 +2,11 @@
         <img src="/images/icon.png" class="logo" alt="image not found">
         <nav>
             <ul>
-                <li><a th:href="@{'/'}">Home</a></li>
-                <li><a th:href="@{'/table-cars'}">Table cars</a></li>
-                <li><a th:href="@{'/login'}">Login</a></li>
-            </ul>
+                <li><a th:href="@{'?lng=ru'}">RU</a></li>
+                <li><a th:href="@{'?lng=en'}">EN</a></li>
+                <li><a th:href="@{'/'}" th:text="#{label.home}">Home</a></li>
+                <li><a th:href="@{'/table-cars'}" th:text="#{label.table}">Table cars</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{'/login'}" th:text="#{label.logout}">Logout</a></li>
+                </ul>
         </nav>
     </div>

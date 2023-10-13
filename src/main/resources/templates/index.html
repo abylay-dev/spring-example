@@ -1,26 +1,83 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       layout:decorate="~{layout/main}">
 <div layout:fragment="main_content">
     <div class="headerr"></div>
     <div class="rows">
         <div class="coll">
             <br>
-            <p class="namepage">Some cars</p>
-            <p>A car, or an automobile, is a motor vehicle with wheels. Most definitions of cars say that they run primarily on roads, seat one to eight people,
-               have four wheels, and mainly transport people, not cargo.
-               French inventor Nicolas-Joseph Cugnot built the first steam-powered road vehicle in 1769, while French-born Swiss inventor François Isaac de Rivaz
-               designed and constructed the first internal combustion-powered automobile in 1808. The modern car - a practical, marketable automobile for everyday
-               use - was invented in 1886, when German inventor Carl Benz patented his Benz Patent-Motorwagen. Commercial cars became widely available during the
-               20th century. One of the first cars affordable by the masses was the 1908 Model T, an American car manufactured by the Ford Motor Company. Cars
-               were rapidly adopted in the US, where they replaced horse-drawn carriages. In Europe and other parts of the world, demand for automobiles did
-               not increase until after World War II. The car is considered an essential part of the developed economy.</p>
+            <br>
+            <p class="namepage" th:text="#{label.maint}"></p>
+            <p th:text="#{label.maintext}"></p>
         </div>
         <div class="coll">
-            <div class="cards cards1"><a th:href="@{'/bmw-information'}"></a></div>
-            <div class="cards cards2"><a th:href="@{'/mercedes-information'}"></a></div>
-            <div class="cards cards3"><a th:href="@{'/audi-information'}"></a></div>
-            <div class="cards cards4"><a th:href="@{'/porsche-information'}"></a></div>
+            <ul class="cards">
+                <li class="cards_item">
+                    <article class="card">
+                        <div class="card_img">
+                            <div class="card_img1">
+                                <a th:href="@{'/bmw-information'}"></a>
+                            </div>
+                        </div>
+                        <div class="card_content">
+                            <h3 class="card_title">test 123123</h3>
+                            <p class="card_descr">
+                                something about this car, asdgvasgdahsdd
+                            </p>
+                            <button class="card_btn">Press to get more info</button>
+                        </div>
+                        </article>
+                </li>
+                <li class="cards_item">
+                    <article class="card">
+                        <div class="card_img">
+                            <div class="card_img2">
+                                <a th:href="@{'/mercedes-information'}"></a>
+                            </div>
+                        </div>
+                        <div class="card_content">
+                            <h3 class="card_title">test 123123</h3>
+                            <p class="card_descr">
+                                something about this car, asdgvasgdahsdd
+                            </p>
+                            <button class="card_btn">Press to get more info</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="cards_item">
+                    <article class="card">
+                        <div class="card_img">
+                            <div class="card_img3">
+                                <a th:href="@{'/audi-information'}"></a>
+                            </div>
+                        </div>
+                        <div class="card_content">
+                            <h3 class="card_title">test 123123</h3>
+                            <p class="card_descr">
+                                something about this car, asdgvasgdahsdd
+                            </p>
+                            <button class="card_btn">Press to get more info</button>
+                        </div>
+                    </article>
+                </li>
+                <li class="cards_item">
+                    <article class="card">
+                        <div class="card_img">
+                            <div class="card_img4">
+                                <a th:href="@{'/porsche-information'}"></a>
+                            </div>
+                        </div>
+                        <div class="card_content">
+                            <h3 class="card_title">test 123123</h3>
+                            <p class="card_descr">
+                                something about this car, asdgvasgdahsdd
+                            </p>
+                            <button class="card_btn">Press to get more info</button>
+                        </div>
+                    </article>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
