@@ -321,3 +321,10 @@ myinput{
 .card_content{
     padding: 20px;
 }
+select {
+    width: 200px;
+    padding: 5px;
+}
+select option:checked + table {
+    display: block;
+}

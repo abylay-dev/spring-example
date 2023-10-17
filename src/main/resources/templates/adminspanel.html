@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      layout:decorate="~{layout/main}">
+  <div layout:fragment="main_content">
+    <div class="table table-striped">
+      <div class="colll">
+        <label for="selectList">Select element:</label>
+        <select id="selectList">
+          <option value="1">Cars</option>
+            <table>
+              <tr>
+                <th>Cars model</th>
+                <th>Editing</th>
+              </tr>
+            <tr>
+              <td th:text="${car.name} + ${car.model}" style="color: ghostwhite"></td>
+              <td>
+                <a th:href="@{'/delete?carsId=' + ${car.id}}" class="glow-button-delete">-</a>
+                <a th:href="@{'/add-cars?cars_id=' + ${car.id}}" class="glow-button-plus">+</a>
+              </td>
+            </tr>
+            </table>
+          <option value="2">Users</option>
+          <table>
+            <tr>
+              <th>Users name</th>
+              <th>Editing</th>
+            </tr>
+            <tr>
+              <th style="color: #ffffff" th:text="${user.getEmail()}"></th>
+              <th style="color: #ffffff">
+                <a th:href="@{'/add-users?users_id=' + ${user.getId()}}" class="glow-button-plus">+</a>
+                <a th:href="@{'/remove-users?users_id=' + ${user.getId()}}" class="glow-button-delete">-</a>
+              </th>
+            </tr>
+          </table>
+          <option value="3">Market Places</option>
+            <table class="table table-striped">
+              <tr>
+                <th style="color: #ffffff">Market place of name</th>
+                <th style="color: #ffffff">Editing</th>
+              </tr>
+            <thead>
+              <tr>
+                <th style="color: #ffffff" th:text="${market.getMarketname()}"></th>
+                <th style="color: #ffffff">
+                  <a th:href="@{'/add-marketplace?marketplace_id=' + ${market.getId()} + '&cars_id=' + ${car.getId()}}" class="glow-button-plus">+</a>
+                  <a th:href="@{'/remove-marketplace?marketplace_id=' + ${market.getId()} + '&cars_id=' + ${car.getId()}}" class="glow-button-delete">-</a>
+                </th>
+              </tr>
+            </thead>
+            </table>
+        </select>
+      </div>
+    </div>
+  </div>
+</html>

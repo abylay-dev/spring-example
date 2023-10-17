@@ -13,6 +13,7 @@ import java.util.List;
 @Data
 public class Users {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String firstname;
     private String lastname;
@@ -31,6 +32,8 @@ public class Users {
     @ManyToOne
     private Role role;
 
+    public Users(String firstname, String lastname, Integer age, String email, String password, Double balance, String emailPass) {
+    }
 }
 /* first name , last name , id , email, balance, email-pass (controller) update delete add findAll */
 

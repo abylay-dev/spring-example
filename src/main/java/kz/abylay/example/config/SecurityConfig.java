@@ -11,11 +11,17 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.sql.DataSource;
 import java.beans.BeanProperty;
 
 @Configuration
@@ -24,7 +30,6 @@ import java.beans.BeanProperty;
 public class SecurityConfig {
 
     private final UserService userService;
-
 
     public SecurityConfig(UserService userService) {
         this.userService = userService;
@@ -51,8 +56,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authConfig -> {
             authConfig.requestMatchers(HttpMethod.GET, "/login" , "/error" , "/login-error" ,
                     "/logout").permitAll();
-            authConfig.requestMatchers(HttpMethod.GET, "/", "/table-cars", "/bmw-information", "/mercedes-information", "/audi-information", "/porsche-information").hasAnyRole("USER","ADMIN","MODERATOR");
-            authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/remove-marketplace", "/add-cars","/add-cars-page","/update/{id}", "/update-cars", "/delete").hasAnyRole( "ADMIN");
+            authConfig.requestMatchers(HttpMethod.GET, "/", "/table-cars", "/bmw-information", "/mercedes-information", "/audi-information", "/porsche-information","/registration").hasAnyRole("USER","ADMIN","MODERATOR");
+            authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/remove-marketplace", "/add-cars","/add-cars-page","/update/{id}", "/update-cars", "/delete","/admins-panel", "/add-users").hasAnyRole( "ADMIN");
             authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace","/add-cars","/add-cars-page", "/update/{id}", "/update-cars").hasAnyRole("MODERATOR","ADMIN");
 
                     authConfig.anyRequest().authenticated();
@@ -84,4 +89,16 @@ public class SecurityConfig {
                 "/js/**",
                 "/images/**");
     }
+
+    /*@Autowired
+    private DataSource dataSource;
+
+
+    protected void configure(AuthenticationManagerBuilder authh) throws Exception{
+        authh.jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                .usersByUsernameQuery("select username, password, active from usr where username=?")
+                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
+    }*/
 }

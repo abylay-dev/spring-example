@@ -2,13 +2,11 @@ package kz.abylay.example.controllers;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import kz.abylay.example.model.Cars;
-import kz.abylay.example.model.Country;
-import kz.abylay.example.model.Marketplace;
-import kz.abylay.example.model.Person;
+import kz.abylay.example.model.*;
 import kz.abylay.example.services.CarsService;
 import kz.abylay.example.services.CountryService;
 import kz.abylay.example.services.MarketplaceService;
+import kz.abylay.example.services.UserService;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.lang.constant.Constable;
 import java.util.List;
 
 @Controller("/")
@@ -24,11 +23,13 @@ public class Homepage {
     private final CarsService carsService;
     private final CountryService countryService;
     private final MarketplaceService marketplaceService;
+    private final UserService userService;
 
-    public Homepage(CarsService carsService, CountryService countryService, MarketplaceService marketplaceService){
+    public Homepage(CarsService carsService, CountryService countryService, MarketplaceService marketplaceService, UserService userService){
         this.carsService = carsService;
         this.countryService = countryService;
         this.marketplaceService = marketplaceService;
+        this.userService = userService;
     }
 
     @GetMapping("/table-cars")
@@ -108,6 +109,13 @@ public class Homepage {
         return "login";
     }
 
+    @GetMapping("/admins-panel")
+    public String admins_panel(Model model){
+        model.addAttribute("car", carsService.getCarsById(2));
+        model.addAttribute("user", userService.getUserById(2));
+        model.addAttribute("market", marketplaceService.getMarketplaceById(2));
+        return "adminspanel";
+    }
     @GetMapping("/bmw-information")
     @PostAuthorize("hasAnyRole('ADMIN', 'USER' , 'MODERATOR')")
     public String bmw(){
@@ -160,15 +168,21 @@ public class Homepage {
         return "redirect:/update/" + carsId;
     }
 
+    @GetMapping("/add-users")
+    public String addUsers(@RequestParam("firstname") String firstname,
+                           @RequestParam("lastname") String lastname,
+                           @RequestParam("age") Integer age,
+                           @RequestParam("email") String email,
+                           @RequestParam("password") String  password,
+                           @RequestParam("balance") Double balance,
+                           @RequestParam("email_pass") String  email_pass){
+        userService.addUser(new Users(firstname, lastname, age, email, password, balance, email_pass));
+        return "redirect:/add-users";
+    }
 
-    @GetMapping("/remove-marketplace")
-    @PostAuthorize("hasAnyRole('ADMIN')")
-    public String removeMarketplace(@RequestParam("cars_id")Integer carsId,
-                                 @RequestParam("marketplace_id") Integer marketplaceId){
-        Marketplace marketplace = marketplaceService.getMarketplaceById(marketplaceId);
-        Cars cars = carsService.getCarsById(carsId);
-        cars.getMarketplaces().remove(marketplace);
-        carsService.updateCars(cars);
-        return "redirect:/update/" + carsId;
+    @GetMapping("/remove-users")
+    public String removeUser(@RequestParam("user_id")Integer userId){
+        userService.deleteUser(userId);
+        return "redirect:/index";
     }
 }

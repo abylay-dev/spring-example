@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      layout:decorate="~{layout/main}">
+    <div layout:fragment="main_content">
+        <form th:action="@{'/add-users'}" method="post">
+            <div class="mb-3">
+                <p class="namepage">Add Users page</p>
+                <label for="firstname" class="form-label" style="color: floralwhite">Firstname :</label>
+                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Alex" th:class="myinput">
+            </div>
+        <div class="mb-3">
+            <label for="lastname" class="form-label" style="color: floralwhite">Lastname :</label>
+            <input type="text" id="lastname" name="lastname" class="form-control" th:class="myinput">
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label" style="color: floralwhite">Age :</label>
+            <input type="number" id="age" name="age" class="form-control" placeholder="20" th:class="myinput">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label" style="color: floralwhite">Email :</label>
+            <input type="text" id="email" name="email" class="form-control" th:class="myinput">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label" style="color: floralwhite">Password :</label>
+            <input type="password" id="password" name="password" class="form-control" th:class="myinput">
+        </div>
+        <div class="mb-3">
+            <label for="balance" class="form-label" style="color: floralwhite">Balance :</label>
+            <input type="number" id="balance" name="balance" class="form-control" placeholder="100000" th:class="myinput">
+        </div>
+        <div class="mb-3">
+            <label for="email_pass" class="form-label" style="color: floralwhite">Email password :</label>
+            <input type="password" id="email_pass" name="email_pass" class="form-control" th:class="myinput">
+        </div>
+        <div class="button-pos">
+            <button type="submit" class="floating-button">Press to submit</button>
+            <a th:href="@{'/index'}" class="floating-button">Back to main page</a>
+        </div>
+    </form>
+    <br><br>
+</div>
+</html>
