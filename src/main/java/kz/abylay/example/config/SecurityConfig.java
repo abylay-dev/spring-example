@@ -12,18 +12,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import javax.sql.DataSource;
-import java.beans.BeanProperty;
 
 @Configuration
 @EnableWebSecurity
@@ -51,10 +42,11 @@ public class SecurityConfig {
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authConfig -> {
-                    authConfig.requestMatchers(HttpMethod.GET, "/authorize/**", "/error", "/logout", "/user/add-user").permitAll();
+                    authConfig.requestMatchers(HttpMethod.GET, "/authorize/**", "/error", "/logout").permitAll();
+                    authConfig.requestMatchers(HttpMethod.POST, "/users/add-user").permitAll();
                     authConfig.requestMatchers(HttpMethod.GET, "/", "/table-cars", "/bmw-information", "/mercedes-information", "/audi-information", "/porsche-information").hasAnyRole("USER", "ADMIN", "MODERATOR");
-                    authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/remove-marketplace", "/add-cars", "/add-cars-page", "/update/{id}", "/update-cars", "/delete", "/admins-panel").hasAnyRole("ADMIN");
-                    authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/add-cars", "/add-cars-page", "/update/{id}", "/update-cars").hasAnyRole("MODERATOR", "ADMIN");
+                    /*authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/remove-marketplace", "/add-cars", "/add-cars-page", "/update/{id}", "/update-cars", "/delete", "/admins-panel").hasAnyRole("ADMIN");
+                    authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/add-cars", "/add-cars-page", "/update/{id}", "/update-cars").hasAnyRole("MODERATOR", "ADMIN");*/
 
                     authConfig.anyRequest().authenticated();
                 })

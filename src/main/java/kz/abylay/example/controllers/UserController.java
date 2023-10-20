@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.management.relation.RoleNotFoundException;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -35,15 +35,14 @@ public class UserController {
     }
 
     @PostMapping("/add-user")
-    @PermitAll
     public String addUsers(@RequestParam("firstname") String firstname,
                            @RequestParam("lastname") String lastname,
                            @RequestParam("age") Integer age,
-                           @RequestParam("email") String email,
                            @RequestParam("balance") Double balance,
+                           @RequestParam("email") String email,
                            @RequestParam("password") String password,
                            @RequestParam("rePassword") String  rePassword) throws RoleNotFoundException {
-        userService.addUser(new Users(firstname, lastname, age, email, password, balance, rePassword));
+        userService.addUser(new Users(null, firstname, lastname, age, email, password, balance, rePassword));
         return "redirect:/";
     }
 

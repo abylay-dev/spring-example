@@ -14,13 +14,13 @@ import java.util.List;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String firstname;
     private String lastname;
     private Integer age;
     private String email;
     private String password;
-    private double balance;
+    private Double balance;
     private String rePassword;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -32,8 +32,15 @@ public class Users {
     @ManyToOne
     private Role role;
 
-    public Users(String firstname, String lastname, Integer age, String email, String password, Double balance, String emailPass) {
+    public Users(Integer id, String firstname, String lastname, Integer age, String email, String password, Double balance, String rePassword) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.balance = balance;
+        this.rePassword = rePassword;
     }
 }
-/* first name , last name , id , email, balance, email-pass (controller) update delete add findAll */
 

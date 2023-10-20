@@ -38,7 +38,7 @@ public class UserServiceImp implements UserService {
     }
     @Override
     public void addUser(Users u) throws RoleNotFoundException {
-        Role userRole = roleRepository.findRoleByName("USER"); //todo либо ROLE_USER, нужно протестировать
+        Role userRole = roleRepository.findRoleByName("ROLE_USER");
         if (userRole == null){
             throw new RoleNotFoundException("USER role not found");
         }
