@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="/registration-css.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
 </head>
 <body>
-Add new user
-<form action="/registration" method="post">
-  <div><label>User name: <input type="text" name="username"></label></div>
-  <div><label>Password: <input type="password" name="password"></label></div>
-  <!--<input type="hidden" name="_csrf" value="{{_csrf.token}}">-->
-  <div><input type="submit" value="Sign in"></div>
-</form>
+<section>
+    <form th:action="@{'/user/add-user'}" method="post">
+        <h1>Registration</h1>
+        <div><label>First name: <input type="text" name="firstname"></label></div>
+        <div><label>Last name: <input type="text" name="lastname"></label></div>
+        <div><label>Age: <input type="number" name="age" min="1" max="150"></label></div>
+        <div><label>Balance: <input type="number" name="balance" min="0"></label></div>
+        <div><label>Email: <input type="email" name="email"></label></div>
+        <div><label>Password: <input type="password" name="password"></label></div>
+        <div><label>Re-password: <input type="password" name="rePassword"></label></div>
+        <div><input type="submit" value="Sign in"></div>
+    </form>
+</section>
 </body>
 </html>

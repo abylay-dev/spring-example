@@ -15,17 +15,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.lang.constant.Constable;
 import java.util.List;
 
-@Controller("/")
-public class Homepage {
+@Controller
+public class HomepageController {
     private final CarsService carsService;
     private final CountryService countryService;
     private final MarketplaceService marketplaceService;
     private final UserService userService;
 
-    public Homepage(CarsService carsService, CountryService countryService, MarketplaceService marketplaceService, UserService userService){
+    public HomepageController(CarsService carsService, CountryService countryService, MarketplaceService marketplaceService, UserService userService){
         this.carsService = carsService;
         this.countryService = countryService;
         this.marketplaceService = marketplaceService;
@@ -49,14 +48,14 @@ public class Homepage {
 
     @GetMapping("/")
     @PostAuthorize("hasAnyRole('ADMIN', 'USER' , 'MODERATOR')")
-        public String home(HttpServletResponse response){
+    public String home(HttpServletResponse response) {
         Cookie cookie = new Cookie("date", "1");
         response.addCookie(cookie);
         cookie.setMaxAge(600);
         cookie.setValue("2");
         cookie.setAttribute("etad", "3");
         return "index";
-        }
+    }
 
 
 
@@ -102,11 +101,6 @@ public class Homepage {
     public String deleteCarsById(@RequestParam("carsId") Integer id){
         carsService.deleteCars(id);
         return "redirect:/table-cars";
-    }
-
-    @GetMapping("/login")
-    public String login(){
-        return "login";
     }
 
     @GetMapping("/admins-panel")
@@ -166,23 +160,5 @@ public class Homepage {
         cars.getMarketplaces().add(marketplace);
         carsService.updateCars(cars);
         return "redirect:/update/" + carsId;
-    }
-
-    @GetMapping("/add-users")
-    public String addUsers(@RequestParam("firstname") String firstname,
-                           @RequestParam("lastname") String lastname,
-                           @RequestParam("age") Integer age,
-                           @RequestParam("email") String email,
-                           @RequestParam("password") String  password,
-                           @RequestParam("balance") Double balance,
-                           @RequestParam("email_pass") String  email_pass){
-        userService.addUser(new Users(firstname, lastname, age, email, password, balance, email_pass));
-        return "redirect:/add-users";
-    }
-
-    @GetMapping("/remove-users")
-    public String removeUser(@RequestParam("user_id")Integer userId){
-        userService.deleteUser(userId);
-        return "redirect:/index";
     }
 }

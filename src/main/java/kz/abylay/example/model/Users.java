@@ -21,7 +21,7 @@ public class Users {
     private String email;
     private String password;
     private double balance;
-    private String email_pass;
+    private String rePassword;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private  Country country;

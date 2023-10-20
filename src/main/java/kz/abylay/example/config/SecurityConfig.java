@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -36,52 +37,47 @@ public class SecurityConfig {
     }
 
     @Autowired
-    void registerProvider(AuthenticationManagerBuilder auth) throws Exception{
+    void registerProvider(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService);
     }
 
     @Bean
-    BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    SecurityEvaluationContextExtension securityEvaluationContextExtension(){
+    SecurityEvaluationContextExtension securityEvaluationContextExtension() {
         return new SecurityEvaluationContextExtension();
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests(authConfig -> {
-            authConfig.requestMatchers(HttpMethod.GET, "/login" , "/error" , "/login-error" ,
-                    "/logout").permitAll();
-            authConfig.requestMatchers(HttpMethod.GET, "/", "/table-cars", "/bmw-information", "/mercedes-information", "/audi-information", "/porsche-information","/registration").hasAnyRole("USER","ADMIN","MODERATOR");
-            authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/remove-marketplace", "/add-cars","/add-cars-page","/update/{id}", "/update-cars", "/delete","/admins-panel", "/add-users").hasAnyRole( "ADMIN");
-            authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace","/add-cars","/add-cars-page", "/update/{id}", "/update-cars").hasAnyRole("MODERATOR","ADMIN");
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authConfig -> {
+                    authConfig.requestMatchers(HttpMethod.GET, "/authorize/**", "/error", "/logout", "/user/add-user").permitAll();
+                    authConfig.requestMatchers(HttpMethod.GET, "/", "/table-cars", "/bmw-information", "/mercedes-information", "/audi-information", "/porsche-information").hasAnyRole("USER", "ADMIN", "MODERATOR");
+                    authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/remove-marketplace", "/add-cars", "/add-cars-page", "/update/{id}", "/update-cars", "/delete", "/admins-panel").hasAnyRole("ADMIN");
+                    authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/add-cars", "/add-cars-page", "/update/{id}", "/update-cars").hasAnyRole("MODERATOR", "ADMIN");
 
                     authConfig.anyRequest().authenticated();
-        })
-                .formLogin(login ->{
-                    login.loginPage("/login");
-                    login.usernameParameter("email");
-                    login.passwordParameter("password");
-                    login.loginProcessingUrl("/auth").permitAll();
-                    login.defaultSuccessUrl("/");
-                    login.failureForwardUrl("/403");
-                }
-            ).logout(logout ->{
-                logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-                logout.logoutSuccessUrl("/login");
-                logout.deleteCookies("JSESSIONID");
-                logout.invalidateHttpSession(true);
                 })
-                .exceptionHandling(exception -> exception.accessDeniedPage("/403"));
+                .formLogin(login -> {
+                            login.loginPage("/authorize/login");
+                            login.usernameParameter("email");
+                            login.passwordParameter("password");
+                            login.loginProcessingUrl("/auth").permitAll();
+                            login.defaultSuccessUrl("/");
+                            login.failureForwardUrl("/error");
+                        }
+                ).logout(logout -> {
+                    logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+                    logout.logoutSuccessUrl("/authorize/login");
+                    logout.deleteCookies("JSESSIONID");
+                    logout.invalidateHttpSession(true);
+                })
+                .exceptionHandling(exception -> exception.accessDeniedPage("/error"));
         return http.build();
     }
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){
+    public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring().requestMatchers("registration-css.css",
                 "bootstrap-grid.min.css",
                 "bootstrap-reboot.min.css",
@@ -89,16 +85,4 @@ public class SecurityConfig {
                 "/js/**",
                 "/images/**");
     }
-
-    /*@Autowired
-    private DataSource dataSource;
-
-
-    protected void configure(AuthenticationManagerBuilder authh) throws Exception{
-        authh.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select username, password, active from usr where username=?")
-                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
-    }*/
 }
