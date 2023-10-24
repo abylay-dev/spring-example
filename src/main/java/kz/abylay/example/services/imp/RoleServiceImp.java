@@ -22,4 +22,11 @@ public class RoleServiceImp implements RoleService {
     public Role getRoleById(Integer id) {
         return roleRepository.findById(id).orElse(null);
     }
+
+    public void createRoles(){
+        roleRepository.saveAllAndFlush(List.of(new Role(1, "ROLE_USER"),
+                                                new Role(2, "ROLE_ADMIN"),
+                                                new Role(3, "ROLE_MODERATOR"))
+        );
+    }
 }

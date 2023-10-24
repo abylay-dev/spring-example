@@ -103,13 +103,10 @@ public class HomepageController {
         return "redirect:/table-cars";
     }
 
-    @GetMapping("/admins-panel")
+    /*@GetMapping("/admins-panel")
     public String admins_panel(Model model){
-        model.addAttribute("car", carsService.getCarsById(2));
-        model.addAttribute("user", userService.getUserById(2));
-        model.addAttribute("market", marketplaceService.getMarketplaceById(2));
         return "adminspanel";
-    }
+    }*/
     @GetMapping("/bmw-information")
     @PostAuthorize("hasAnyRole('ADMIN', 'USER' , 'MODERATOR')")
     public String bmw(){
@@ -139,7 +136,7 @@ public class HomepageController {
 
     @PostMapping("/add-cars")
     @PostAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
-    public String addPerson(@RequestParam("name") String name,
+    public String addCars(@RequestParam("name") String name,
                             @RequestParam("model") String model,
                             @RequestParam("tank") Double tank,
                             @RequestParam("countryId") Integer countryId) {

@@ -5,8 +5,10 @@
                 <li><a th:href="@{'?lng=ru'}">RU</a></li>
                 <li><a th:href="@{'?lng=en'}">EN</a></li>
                 <li><a th:href="@{'/'}" th:text="#{label.home}">Home</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin-panel'}" th:text="#{label.atable}"></a></li>
                 <li><a th:href="@{'/table-cars'}" th:text="#{label.table}">Table cars</a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{'/login'}" th:text="#{label.logout}">Logout</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{'/authorize/login'}" th:text="#{label.logout}">Logout</a></li>
                 </ul>
         </nav>
     </div>
+<!--hasAuthority-->

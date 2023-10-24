@@ -3,5 +3,88 @@
       layout:decorate="~{layout/main}">
 <div layout:fragment="main_content">
     ERROR
+    <br><br>
+    <details id="details1">
+        <summary>Table Cars</summary>
+        <table class="table table-striped">
+            <div class="colll">
+                <thead>
+                <tr>
+                    <th scope="col" style="color: #ffffff">#</th>
+                    <th scope="col" style="color: #ffffff">Name</th>
+                    <th scope="col" style="color: #ffffff">Model</th>
+                    <th scope="col" style="color: #ffffff">Tank</th>
+                    <th scope="col" style="color: #ffffff">Country</th>
+                </tr>
+                </thead>
+            </div>
+            <tbody>
+            <tr th:each="car: ${cars}">
+                <th scope="row" th:text="${car.id}" style="color: antiquewhite"></th>
+                <td th:text="${car.name}" style="color: ghostwhite"></td>
+                <td th:text="${car.model}" style="color: floralwhite"></td>
+                <td th:text="${car.getTank()}" style="color: whitesmoke"></td>
+                <td th:text="${car.getCountry().getNameofcountry()}" style="color: white"></td>
+                <td class="colll">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/update/' + ${car.id}}" class="glow-button">Update</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </details>
+
+    <details id="details2">
+        <summary>Table Users</summary>
+        <table class="table table-striped">
+            <div class="colll">
+                <thead>
+                <tr>
+                    <th scope="col" style="color: #ffffff">#</th>
+                    <th scope="col" style="color: #ffffff">Name</th>
+                    <th scope="col" style="color: #ffffff">Lastname</th>
+                    <th scope="col" style="color: #ffffff">Age</th>
+                    <th scope="col" style="color: #ffffff">Password</th>
+                    <th scope="col" style="color: #ffffff">Balance</th>
+                </tr>
+                </thead>
+            </div>
+            <tbody>
+            <tr th:each="user: ${users}">
+                <th scope="row" th:text="${user.getId()}" style="color: antiquewhite"></th>
+                <td th:text="${user.getFirstname()}" style="color: ghostwhite"></td>
+                <td th:text="${user.getLastname()}" style="color: floralwhite"></td>
+                <td th:text="${user.getAge()}" style="color: whitesmoke"></td>
+                <td th:text="${user.getPassword()}" style="color: white"></td>
+                <td th:text="${user.getBalance()}" style="color: white"></td>
+                <td class="colll">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/update-user/' + ${user.getId()}}" class="glow-button">Update</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </details>
+
+    <details id="details3">
+        <summary>Table Market places</summary>
+        <table class="table table-striped">
+            <div class="colll">
+                <thead>
+                <tr>
+                    <th scope="col" style="color: #ffffff">#</th>
+                    <th scope="col" style="color: #ffffff">Market Name</th>
+                </tr>
+                </thead>
+            </div>
+            <tbody>
+            <tr th:each="market: ${marketplaces}">
+                <th scope="row" th:text="${market.getId()}" style="color: antiquewhite"></th>
+                <td th:text="${market.getMarketname()}" style="color: ghostwhite"></td>
+                <td class="colll">
+                    <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{'#' + ${market.getId()}}" class="glow-button">Update</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </details>
 </div>
 </html>
