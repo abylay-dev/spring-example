@@ -5,28 +5,28 @@
     <p class="namepage">Edit Cars page</p>
     <form th:action="@{'/update-cars'}" method="post">
         <input type="number" name="id" hidden th:value="${cars.id}">
-        <div class="mb-3">
+        <div class="inputbox2">
             <label for="name" class="form-label" style="color: floralwhite">Car :</label>
             <input type="text" id="name" name="name" class="form-control" th:class="myinput" placeholder="BMW"
                    th:value="${cars.name}">
         </div>
-        <div class="mb-3">
+        <div class="inputbox2">
             <label for="model" class="form-label" style="color: floralwhite">Model :</label>
             <input type="text" id="model" name="model" th:class="myinput" class="form-control" placeholder="X7"
                    th:value="${cars.model}">
         </div>
-        <div class="mb-3">
+        <div class="inputbox2">
             <label for="tank" class="form-label" style="color: floralwhite">Tank :</label>
             <input type="number" id="tank" name="tank" th:class="myinput" class="form-control" placeholder="6" th:value="${cars.tank}">
-        </div>
-        <div class="mb-3">
+        </div><br>
+        <div class="selectbox">
             <label for="country" class="form-label" style="color: floralwhite">Country :</label>
             <select name="countryId" class="form-select" th:class="myinput" aria-label="Default select example" id="country">
                 <option th:each="country: ${countries}" th:selected="${country.getId()}==${cars.getCountry().getId()}" th:text="${country.getNameofcountry()}" th:value="${country.getId()}"></option>
             </select>
         </div>
-
     </form>
+
     <div class="button-pos">
         <button type="submit" class="floating-button">Save Changes</button>
         <a th:href="@{'/delete?carsId=' + ${cars.id}}" class="floating-button-delete">Delete</a>

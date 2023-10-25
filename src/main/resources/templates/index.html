@@ -3,81 +3,35 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       layout:decorate="~{layout/main}">
 <div layout:fragment="main_content">
-    <div class="headerr"></div>
     <div class="rows">
         <div class="coll">
-            <br>
-            <br>
+            <br><br><br><br><br><br>
             <p class="namepage" th:text="#{label.maint}"></p>
             <p th:text="#{label.maintext}"></p>
         </div>
         <div class="coll">
-            <ul class="cards">
-                <li class="cards_item">
-                    <article class="card">
-                        <div class="card_img">
-                            <div class="card_img1">
-                                <a th:href="@{'/bmw-information'}"></a>
-                            </div>
-                        </div>
-                        <div class="card_content">
-                            <h3 class="card_title">test 123123</h3>
-                            <p class="card_descr">
-                                something about this car, asdgvasgdahsdd
-                            </p>
-                            <button class="card_btn">Press to get more info</button>
-                        </div>
-                        </article>
-                </li>
-                <li class="cards_item">
-                    <article class="card">
-                        <div class="card_img">
-                            <div class="card_img2">
-                                <a th:href="@{'/mercedes-information'}"></a>
-                            </div>
-                        </div>
-                        <div class="card_content">
-                            <h3 class="card_title">test 123123</h3>
-                            <p class="card_descr">
-                                something about this car, asdgvasgdahsdd
-                            </p>
-                            <button class="card_btn">Press to get more info</button>
-                        </div>
-                    </article>
-                </li>
-                <li class="cards_item">
-                    <article class="card">
-                        <div class="card_img">
-                            <div class="card_img3">
-                                <a th:href="@{'/audi-information'}"></a>
-                            </div>
-                        </div>
-                        <div class="card_content">
-                            <h3 class="card_title">test 123123</h3>
-                            <p class="card_descr">
-                                something about this car, asdgvasgdahsdd
-                            </p>
-                            <button class="card_btn">Press to get more info</button>
-                        </div>
-                    </article>
-                </li>
-                <li class="cards_item">
-                    <article class="card">
-                        <div class="card_img">
-                            <div class="card_img4">
-                                <a th:href="@{'/porsche-information'}"></a>
-                            </div>
-                        </div>
-                        <div class="card_content">
-                            <h3 class="card_title">test 123123</h3>
-                            <p class="card_descr">
-                                something about this car, asdgvasgdahsdd
-                            </p>
-                            <button class="card_btn">Press to get more info</button>
-                        </div>
-                    </article>
-                </li>
-            </ul>
+            <div class="cards">
+                <div class="card">
+                    <a th:href="@{'/bmw-information'}">
+                    <div class="card_img1"></div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a th:href="@{'/mercedes-information'}">
+                    <div class="card_img2"></div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a th:href="@{'/audi-information'}">
+                    <div class="card_img3"></div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a th:href="@{'/porsche-information'}">
+                    <div class="card_img4"></div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

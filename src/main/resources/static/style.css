@@ -33,15 +33,18 @@
     margin-top: -10px;
 }
 nav{
-    flex: 1;
+    flex:1;
     text-align: right;
+}
+nav ul {
+    display: flex;
+    margin-right: -120px;
 }
 nav ul li{
     list-style: none;
     margin-top: 20px;
     margin-right: 90px;
     display: inline-block;
-    
 }
 nav ul li a{
     text-decoration: none;
@@ -253,78 +256,94 @@ myinput{
     box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
     color: white;
 }
-
-
-.cards{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    display: flex;
-}
-.cards_item:not(:last-child){
-    margin-right: 20px;
-}
-.card{
-    width: 200px;
-    height: 200px;
-    display: inline-block;
-    border-radius: 10px;
-    padding: 15px 25px;
-    box-sizing: border-box;
-    cursor: pointer;
-    margin: 10px 15px;
-    background-position: center;
-    background-size: cover;
-    transition: transform 0.5s;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 14px;
-    text-transform: uppercase;
-    background-color: darkgray;
-}
-.card_img{
-    height: 20px;
-}
-.card_img1{
-    background-image: url(./images/bmwlogo.jpg);
-}
-.card_img2{
-    background-image: url(./images/mercedeslogo.jpg);
-}
-.card_img3{
-    background-image: url(./images/audilogo.png);
-}
-.card_img4{
-    background-image: url(./images/porschelogo.jpg);
-}
-.card_img img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.card_title{
-    margin: 0;
-    margin-bottom: 15px;
-}
-.card_descr{
-    margin: 0;
-    margin-bottom: 15px;
-}
-.card_btn{
-    border: none;
-    padding: 10px 20px;
-    background-color: white;
-    color: black;
-    cursor: pointer;
-    margin-bottom: 15px;
-}
-.card_content{
-    padding: 20px;
-}
 select {
     width: 200px;
     padding: 5px;
 }
 select option:checked + table {
     display: block;
+}
+.inputbox2{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    font-size: 16px;
+    position: relative;
+    margin: 30px 0;
+    width: 400px;
+    border-bottom: 2px solid #fff;
+    margin-bottom: -20px;
+}
+.inputbox2 input {
+    width: 100%;
+    height: 30px;
+    margin-left: -35px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    padding: 0 35px 0 35px;
+    color: #fff;
+    margin-bottom: -20px;
+}
+.selectbox option {
+    background:#333;
+    border-top:#222 solid 1px;
+    }
+.cards{
+    margin: 100px 0;
+    margin-bottom: -100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.card{
+    width: 285px;
+    height: 150px;
+    border-radius: 30px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .2);
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.card_img2{
+    height: 200px;
+    width: 100%;
+    position: relative;
+    padding: 20px;
+    background: url(data:image/png;base64,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);
+    background-size: cover;
+    background-position: center;
+}
+.card_img3{
+    height: 200px;
+    width: 100%;
+    position: relative;
+    padding: 20px;
+    background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvihHrP8L6iftYE0p6iGAIPQHxGRwD1mml_w&usqp=CAU);
+    background-size: cover;
+    background-position: center;
+}
+.card_img4{
+    height: 200px;
+    width: 100%;
+    position: relative;
+    padding: 20px;
+    background: url(https://cdn4.vectorstock.com/i/1000x1000/52/98/porsche-logo-car-brand-symbol-black-white-design-vector-46125298.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.card_img1{
+    height: 200px;
+    width: 100%;
+    position: relative;
+    padding: 20px;
+    background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRratvdaFpkfYKKPfeKoorIUZ-nXVpxn2dBaf9J7RI-vGqt76Wvbi_7ZBLbAl3pONr3sBk&usqp=CAU);
+    background-size: cover;
+    background-position: center;
+   }
+.card a{
+    text-decoration: none;
+
 }

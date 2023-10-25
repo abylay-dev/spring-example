@@ -8,17 +8,24 @@
 </head>
 <body>
 <section>
+    <div class="form-box1">
     <form th:action="@{'/user/add-user'}" method="post">
-        <h1>Registration</h1>
-        <div><label>First name: <input type="text" name="firstname"></label></div>
-        <div><label>Last name: <input type="text" name="lastname"></label></div>
-        <div><label>Age: <input type="number" name="age" min="1" max="150"></label></div>
-        <div><label>Balance: <input type="number" name="balance" min="0"></label></div>
-        <div><label>Email: <input type="email" name="email"></label></div>
-        <div><label>Password: <input type="password" name="password"></label></div>
-        <div><label>Re-password: <input type="password" name="rePassword"></label></div>
-        <div><input type="submit" value="Sign in"></div>
+        <h3>Registration</h3>
+        <div class="inputbox1"><label>First name: <input type="text" name="firstname" autocomplete="off" required></label></div>
+        <div class="inputbox1"><label>Last name: <input type="text" name="lastname" autocomplete="off" required></label></div>
+        <div class="inputbox1"><label>Age: <input type="number" name="age" min="1" max="150" autocomplete="off" required></label></div>
+        <div class="inputbox1"><label>Balance: <input type="number" name="balance" min="0" autocomplete="off" required></label></div>
+        <div class="inputbox1"><label>Email: <input type="email" name="email" autocomplete="off" required></label></div>
+        <div class="inputbox1"><label>Password: <input type="password" name="password" autocomplete="off" required></label></div>
+        <div class="inputbox1"><label>Re-password: <input type="password" name="rePassword" autocomplete="off" required></label></div>
+        <br><br>
+        <div class="button-log1-pos">
+        <button class="button-log1" type="submit" value="Sign in">Register</button>
+        <button class="button-log1"><a href="/authorize/login">Back</a></button>
+        </div>
+<!--<div class="button-log1"><input type="submit" value="Sign in"></div>-->
     </form>
+    </div>
 </section>
 </body>
 </html>
