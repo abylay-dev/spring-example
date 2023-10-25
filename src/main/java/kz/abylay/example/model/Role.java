@@ -20,4 +20,8 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return name;
     }
+
+    public String getName() {
+        return name.split("_")[1]; //role_user = {role, user} => [1] = user
+    }
 }

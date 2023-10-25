@@ -347,3 +347,10 @@ select option:checked + table {
     text-decoration: none;
 
 }
+
+.panel-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 20px 0;
+}

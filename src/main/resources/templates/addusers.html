@@ -22,20 +22,18 @@
             <input type="text" id="email" name="email" class="form-control" th:class="myinput">
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label" style="color: floralwhite">Password :</label>
-            <input type="password" id="password" name="password" class="form-control" th:class="myinput">
-        </div>
-        <div class="mb-3">
             <label for="balance" class="form-label" style="color: floralwhite">Balance :</label>
             <input type="number" id="balance" name="balance" class="form-control" placeholder="100000" th:class="myinput">
         </div>
         <div class="mb-3">
-            <label for="email_pass" class="form-label" style="color: floralwhite">Email password :</label>
-            <input type="password" id="email_pass" name="email_pass" class="form-control" th:class="myinput">
+            <label for="role" class="form-label" style="color: floralwhite">Roles :</label>
+            <select name="roleId" class="select-box" aria-label="Default select example" id="role">
+                <option th:each="role: ${roles}" th:text="${role.getName()}" th:value="${role.id}"></option>
+            </select>
         </div>
         <div class="button-pos">
             <button type="submit" class="floating-button">Press to submit</button>
-            <a th:href="@{'/index'}" class="floating-button">Back to main page</a>
+            <a th:href="@{'/admin-panel'}" class="floating-button">Back to main page</a>
         </div>
     </form>
     <br><br>

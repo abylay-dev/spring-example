@@ -11,7 +11,7 @@ public interface UserService extends UserDetailsService {
     List<Users> getAllUsers();
     Users getUserById(Integer id);
 
-    void addUser(Users u) throws RoleNotFoundException;
+    void addUser(Users u, Integer roleId) throws RoleNotFoundException;
 
     void updateUser(Users u);
 

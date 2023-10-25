@@ -21,6 +21,8 @@ public class Users {
     private String email;
     private String password;
     private Double balance;
+
+    @Transient
     private String rePassword;
 
     @ManyToOne(fetch = FetchType.EAGER)

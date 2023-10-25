@@ -129,8 +129,13 @@ public class HomepageController {
     }
     @GetMapping("/add-cars-page")
     @PostAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
-    public String getAddCarsPage(Model model) {
+    public String getAddCarsPage(@RequestParam(value = "fromAdmin", defaultValue = "false") Boolean fromAdmin, Model model) {
         model.addAttribute("countries", countryService.getAllCountry());
+        if (fromAdmin){
+            model.addAttribute("carsBackToPage", "/admin-panel");
+        } else {
+            model.addAttribute("carsBackToPage", "/table-cars");
+        }
         return "addCars";
     }
 

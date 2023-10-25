@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.management.relation.RoleNotFoundException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -37,11 +36,17 @@ public class UserServiceImp implements UserService {
         return userRepository.findById(id).orElse(null);
     }
     @Override
-    public void addUser(Users u) throws RoleNotFoundException {
+    public void addUser(Users u, Integer roleId) throws RoleNotFoundException {
         Role userRole = roleRepository.findRoleByName("ROLE_USER");
+
+        if (roleId > 0){
+            userRole = roleRepository.findById(roleId).orElse(userRole);
+        }
+
         if (userRole == null){
             throw new RoleNotFoundException("USER role not found");
         }
+
         if (u.getPassword().equals(u.getRePassword())){
             u.setPassword(passwordEncoder.encode(u.getPassword()));
             u.setRole(userRole);

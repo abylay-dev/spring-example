@@ -3,6 +3,12 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       layout:decorate="~{layout/main}">
   <div layout:fragment="main_content">
+    <div class="panel-buttons">
+      <a href="/add-cars-page?fromAdmin=true" class="btn btn-primary">Add car</a>
+      <a href="#" class="btn btn-primary">Add marketplace</a>
+      <a href="/users/add-user-page" class="btn btn-primary">Add user</a>
+
+    </div>
     <details id="details1">
       <summary>Table Cars</summary>
       <table class="table table-striped">
@@ -42,7 +48,6 @@
             <th scope="col" style="color: #ffffff">Name</th>
             <th scope="col" style="color: #ffffff">Lastname</th>
             <th scope="col" style="color: #ffffff">Age</th>
-            <th scope="col" style="color: #ffffff">Password</th>
             <th scope="col" style="color: #ffffff">Balance</th>
           </tr>
           </thead>
@@ -53,7 +58,6 @@
           <td th:text="${user.getFirstname()}" style="color: ghostwhite"></td>
           <td th:text="${user.getLastname()}" style="color: floralwhite"></td>
           <td th:text="${user.getAge()}" style="color: whitesmoke"></td>
-          <td th:text="${user.getPassword()}" style="color: white"></td>
           <td th:text="${user.getBalance()}" style="color: white"></td>
           <td class="colll">
             <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/update-user/' + ${user.getId()}}" class="glow-button">Update</a>
