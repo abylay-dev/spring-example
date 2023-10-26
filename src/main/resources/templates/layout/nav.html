@@ -1,11 +1,11 @@
     <div class="navbar">
-        <img src="/images/icon.png" class="logo" alt="image not found">
+        <img src="/images/icon.png" th:href="@{'/'}" class="logo" alt="image not found">
         <nav>
             <ul>
                 <li><a th:href="@{'?lng=ru'}">RU</a></li>
                 <li><a th:href="@{'?lng=en'}">EN</a></li>
                 <li><a th:href="@{'/'}" th:text="#{label.home}">Home</a></li>
-                <li sec:authorize="hasRole('ADMIN')"><a th:href="@{'/admin-panel'}" th:text="#{label.atable}"></a></li>
+                <li sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')"><a th:href="@{'/admin-panel'}" th:text="#{label.atable}"></a></li>
                 <li><a th:href="@{'/table-cars'}" th:text="#{label.table}">Table cars</a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{'/authorize/login'}" th:text="#{label.logout}">Logout</a></li>
                 </ul>

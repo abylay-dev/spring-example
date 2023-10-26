@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_content">
+    <p class="namepage">Edit marketplace page</p>
+    <form th:action="@{'/update-marketplace'}" method="post">
+        <input type="number" name="id" hidden th:value="${marketplace.id}">
+        <div class="inputbox2">
+            <label for="name">Marketplace :</label>
+            <input type="text" id="name" th:value="${marketplace.getMarketname()}">
+        </div><br>
+        <div class="selectbox">
+            <label for="country">Country :</label>
+            <select name="countryId" class="select-box" id="country">
+                <option th:each="markets: ${marketplace}" th:selected="${country.getId()}==${marketplace.getId()}" th:text="${country.getNameofcountry()}" th:value="${country.getId()}"></option>
+            </select>
+        </div>
+    </form>
+
+    <div class="button-pos">
+        <button type="submit" class="floating-button">Save Changes</button>
+        <a th:href="@{'/remove-users?usersId=' + ${marketplace.id}}" class="floating-button-delete">Delete</a>
+        <a th:href="@{'/update-marketplace-pagebyid/'+ ${next_marketplace_id}}" type="submit" class="floating-button">Next marketplace</a>
+    </div>
+    <br><br><br>
+</div>
+</html>

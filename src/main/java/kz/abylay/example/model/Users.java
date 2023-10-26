@@ -44,5 +44,8 @@ public class Users {
         this.balance = balance;
         this.rePassword = rePassword;
     }
+
+    public Users(Integer userId, String userName, String userSurname, String userEmail, String userEmailPass) {
+    }
 }
 

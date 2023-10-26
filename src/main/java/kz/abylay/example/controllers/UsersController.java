@@ -1,14 +1,13 @@
 package kz.abylay.example.controllers;
 
+import kz.abylay.example.model.Cars;
 import kz.abylay.example.model.Users;
 import kz.abylay.example.services.RoleService;
 import kz.abylay.example.services.UserService;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.management.relation.RoleNotFoundException;
 
@@ -23,7 +22,7 @@ public class UsersController {
         this.roleService = roleService;
     }
 
-    @PostMapping("/update-user")
+    @PostMapping("/update-users")
     public String update(@RequestParam("userId") Integer userId,
                           @RequestParam("userName") String userName,
                           @RequestParam("userSurname") String userSurname,
@@ -31,10 +30,23 @@ public class UsersController {
                           @RequestParam("userEmailPass") String userEmailPass){
         Users user = userService.getUserById(userId);
         if (user != null) {
-            userService.updateUser(user);
-            return "redirect:/update/" + userId;
+            Users u = new Users(userId, userName, userSurname, userEmail, userEmailPass);
+            userService.updateUser(u);
+            return "redirect:/adminspanel";
         }
-        return "redirect:/error";
+        return "redirect:/update-u/" + userId;
+    }
+    @GetMapping("/update-u/{id}")
+    public String getUpdatePage(@PathVariable("id") Integer id, Model model){
+        Users u = userService.getUserById(id);
+        model.addAttribute("users", u);
+        return "editUsers";
+    }
+
+    @GetMapping("/update-user-page")
+    public String updateUserPage(Model model){
+        model.addAttribute("roles", roleService.getAllRoles());
+        return "editUsers";
     }
 
     @GetMapping("/add-user-page")
@@ -61,6 +73,5 @@ public class UsersController {
         userService.deleteUser(userId);
         return "redirect:/index";
     }
-
 
 }

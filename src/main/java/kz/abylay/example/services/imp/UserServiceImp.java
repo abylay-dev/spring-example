@@ -71,14 +71,4 @@ public class UserServiceImp implements UserService {
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), Set.of(user.getRole()));
     }
 
-    public boolean saveUser(Users users) {
-        Users userFromDB = userRepository.findByEmail(users.getEmail());
-        if (userFromDB != null)
-            return false;
-        //users.setRole(Collections.singleton(new Role(, "ROLE_USER")));
-        userFromDB = new Users();
-        //users.setPassword(passwordEncoder.encode("1234"));
-        return true;
-    }
-
 }

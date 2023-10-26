@@ -22,4 +22,20 @@ public class MarketplaceServiceImp implements MarketplaceService {
     public Marketplace getMarketplaceById(Integer id) {
         return marketplaceRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void addMarketplace(Marketplace m) {
+        marketplaceRepository.save(m);
+    }
+
+    @Override
+    public void updateMarketplace(Marketplace m) {
+        marketplaceRepository.save(m);
+    }
+
+    @Override
+    public void deleteMarketplace(Integer id) {
+        marketplaceRepository.deleteById(id);
+    }
+
 }

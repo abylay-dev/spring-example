@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main}">
+<div layout:fragment="main_content">
+    <p class="namepage">Edit Users page</p>
+    <form th:action="@{'/update-users'}" method="post">
+        <input type="number" name="id" hidden th:value="${users.id}">
+        <div class="inputbox2">
+            <label for="name">Firstname :</label>
+            <input type="text" id="name" th:value="${users.getFirstname()}">
+        </div>
+        <div class="inputbox2">
+            <label for="lastname">Lastname :</label>
+            <input type="text" id="lastname" th:value="${users.getLastname()}">
+        </div>
+        <div class="inputbox2">
+            <label for="age">Age :</label>
+            <input type="number" id="age" th:value="${users.getAge()}">
+        </div>
+        <div class="inputbox2">
+            <label for="email">Email :</label>
+            <input type="text" id="email" th:value="${users.getEmail()}">
+        </div>
+        <div class="inputbox2">
+            <label for="balance">Balance :</label>
+            <input type="number" id="balance" th:value="${users.getBalance()}">
+        </div><br>
+        <div class="selectbox">
+            <label for="role" class="form-label" style="color: floralwhite">Roles :</label>
+            <select name="roleId" class="select-box" aria-label="Default select example" id="role">
+                <option th:each="role: ${roles}" th:selected="${role.getId()}==${users.getRole().getId()}" th:text="${role.getName()}" th:value="${users.getId()}"></option>
+            </select>
+        </div>
+    </form>
+
+    <div class="button-pos">
+        <button type="submit" class="floating-button">Save Changes</button>
+        <a th:href="@{'/remove-users?usersId=' + ${users.id}}" class="floating-button-delete">Delete</a>
+        <a th:href="@{'/update-u/'+ ${next_user_id}}" type="submit" class="floating-button">Next user</a>
+    </div>
+    <br><br><br>
+</div>
+</html>

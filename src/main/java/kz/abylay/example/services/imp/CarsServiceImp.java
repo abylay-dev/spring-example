@@ -36,11 +36,6 @@ public class CarsServiceImp implements CarsService {
     }
 
     @Override
-    public void deleteCars(Cars c) {
-
-    }
-
-    @Override
     public void deleteCars(Integer id) {
         carsRepository.deleteById(Long.valueOf(id));
     }

@@ -1,9 +1,11 @@
 package kz.abylay.example.controllers;
 
 import kz.abylay.example.model.Cars;
+import kz.abylay.example.model.Country;
 import kz.abylay.example.model.Marketplace;
 import kz.abylay.example.model.Users;
 import kz.abylay.example.services.CarsService;
+import kz.abylay.example.services.CountryService;
 import kz.abylay.example.services.MarketplaceService;
 import kz.abylay.example.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,13 @@ public class AdminPanelController {
     private final CarsService carsService;
     private final MarketplaceService marketplaceService;
     private final UserService userService;
+    private final CountryService countryService;
 
-    public AdminPanelController(CarsService carsService, MarketplaceService marketplaceService, UserService userService) {
+    public AdminPanelController(CarsService carsService, MarketplaceService marketplaceService, UserService userService, CountryService countryService) {
         this.carsService = carsService;
         this.marketplaceService = marketplaceService;
         this.userService = userService;
+        this.countryService = countryService;
     }
 
     @GetMapping
@@ -31,11 +35,11 @@ public class AdminPanelController {
         List<Users> usersList = userService.getAllUsers();
         List<Marketplace> marketplaceList = marketplaceService.getAllMarketplace();
         List<Cars> carsList = carsService.getAllCars();
-
+        List<Country> countryList = countryService.getAllCountry();
         model.addAttribute("users", usersList);
         model.addAttribute("marketplaces", marketplaceList);
         model.addAttribute("cars", carsList);
-
+        model.addAttribute("country", countryList);
         return "adminspanel";
     }
 
@@ -59,6 +63,11 @@ public class AdminPanelController {
         return "adminspanel";
     }
 
-
+    @GetMapping("/t-countries")
+    public String showAllCountries(Model model){
+        List<Country> countryList = countryService.getAllCountry();
+        model.addAttribute("country", countryList);
+        return "adminspanel";
+    }
 
 }

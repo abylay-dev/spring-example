@@ -10,8 +10,6 @@ public interface CarsService {
     Cars getCarsById(Integer id);
     void addCars(Cars c);
     void updateCars(Cars c);
-    void deleteCars(Cars c);
-
     void deleteCars(Integer id);
 
 }
