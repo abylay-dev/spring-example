@@ -43,6 +43,12 @@ public class MarketPlaceController {
         return "redirect:/update/" + carsId;
     }
 
+
+    @PostMapping("/add-marketplaces")
+    public String addMarketplaces(@RequestParam("name") String name){
+        marketplaceService.addMarketplace(new Marketplace(null, name));
+        return "redirect:/admin-panel";
+    }
     @GetMapping("/add-marketplace-page")
     public String addMarketPlacePage(Model model){
         model.addAttribute("location", countryService.getAllCountry());
@@ -56,17 +62,20 @@ public class MarketPlaceController {
         Country c = countryService.getCountryById(id);
         model.addAttribute("marketplace", m);
         model.addAttribute("country", c);
+        if (marketplaceService.getMarketplaceById(++id) != null) {
+            model.addAttribute("next_marketplace_id", id);
+        }
         return "editMarketplace";
     }
 
-    @PostMapping("/update-marketplace-page")
+    @PostMapping("/update-marketplace")
     public String updateMarketplace(@RequestParam("id") Integer id,
                              @RequestParam("mname") String mname){
         Marketplace marketplace = marketplaceService.getMarketplaceById(id);
         if (marketplace != null){
             Marketplace m = new Marketplace(id, mname);
             marketplaceService.updateMarketplace(m);
-            return "redirect:/adminspanel";
+            return "redirect:/admin-panel";
         }
         return "redirect:/update-marketplace-pagebyid/" + id;
     }
@@ -74,7 +83,7 @@ public class MarketPlaceController {
     @GetMapping("/delete-marketplace")
     public String deleteMarketplaceById(@RequestParam("marketplaceId") Integer id){
         marketplaceService.deleteMarketplace(id);
-        return "redirect:/adminspanel";
+        return "redirect:/admin-panel";
     }
 
 }

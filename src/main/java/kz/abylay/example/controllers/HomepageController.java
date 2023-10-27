@@ -2,23 +2,20 @@ package kz.abylay.example.controllers;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
-import kz.abylay.example.model.*;
 import kz.abylay.example.services.CarsService;
-import kz.abylay.example.services.CountryService;
-import kz.abylay.example.services.MarketplaceService;
-import kz.abylay.example.services.UserService;
-import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Controller
 public class HomepageController {
+    private final CarsService carsService;
+
+    public HomepageController(CarsService carsService) {
+        this.carsService = carsService;
+    }
+
     @GetMapping("/")
     public String home(HttpServletResponse response) {
         Cookie cookie = new Cookie("date", "1");
@@ -40,7 +37,9 @@ public class HomepageController {
     }
 
     @GetMapping("/audi-information")
-    public String audi(){
+    public String audi(Model model){
+        model.addAttribute("i", 1);
+        model.addAttribute("carsAudi", carsService.findCars("Audi"));
         return "audiinfo";
     }
 

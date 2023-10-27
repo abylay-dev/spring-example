@@ -46,7 +46,7 @@
             <div class="button-pos">
                 <a href="" class="sliding-button" th:href="@{'/'}">Back to main page</a>
                 <a href="" class="sliding-button" th:href="@{'/bmw-information'}">Previous car</a>
-                <a href="" class="sliding-button" th:href="@{'/update/2'}">Update cars</a>
+                <a sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')" class="sliding-button" th:href="@{'/update/2'}">Update cars</a>
                 <a href="" class="sliding-button" th:href="@{'/audi-information'}">Next car</a>
             </div>
             <br><br>

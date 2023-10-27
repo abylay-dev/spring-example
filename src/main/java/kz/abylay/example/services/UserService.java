@@ -16,4 +16,5 @@ public interface UserService extends UserDetailsService {
     void updateUser(Users u);
 
     void deleteUser(Integer u);
+
 }

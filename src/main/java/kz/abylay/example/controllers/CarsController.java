@@ -37,6 +37,9 @@ public class CarsController {
         model.addAttribute("cars", c);
         model.addAttribute("countries", countryService.getAllCountry());
         model.addAttribute("marketplaces", marketplaceService.getAllMarketplace());
+        if (carsService.getCarsById(++id) != null) {
+            model.addAttribute("next_cars_id", id);
+        }
         return "editCars";
     }
 

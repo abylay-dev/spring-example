@@ -40,6 +40,9 @@ public class UsersController {
     public String getUpdatePage(@PathVariable("id") Integer id, Model model){
         Users u = userService.getUserById(id);
         model.addAttribute("users", u);
+        if (userService.getUserById(++id) != null) {
+            model.addAttribute("next_user_id", id);
+        }
         return "editUsers";
     }
 
@@ -49,11 +52,16 @@ public class UsersController {
         return "editUsers";
     }
 
-    @GetMapping("/add-user-page")
-    public String addUserPage(Model model){
-        model.addAttribute("roles", roleService.getAllRoles());
+    /*@GetMapping("/add-user-page")
+    public String addUserPage(@RequestParam("firstname") String firstname,
+                              @RequestParam("lastname") String lastname,
+                              @RequestParam("age") Integer age,
+                              @RequestParam("email") String email,
+                              @RequestParam("balance") Double balance,
+                              @RequestParam("role") Integer roleId){
+        userService.addUser(new Users(firstname,lastname,age,email,balance,roleId));
         return "addusers";
-    }
+    }*/
 
     @PostMapping("/add-user")
     public String addUsers(@RequestParam("firstname") String firstname,

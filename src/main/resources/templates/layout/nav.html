@@ -8,6 +8,6 @@
                 <li sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')"><a th:href="@{'/admin-panel'}" th:text="#{label.atable}"></a></li>
                 <li><a th:href="@{'/table-cars'}" th:text="#{label.table}">Table cars</a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{'/authorize/login'}" th:text="#{label.logout}">Logout</a></li>
-                </ul>
+            </ul>
         </nav>
     </div>

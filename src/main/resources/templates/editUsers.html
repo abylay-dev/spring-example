@@ -36,7 +36,7 @@
     <div class="button-pos">
         <button type="submit" class="floating-button">Save Changes</button>
         <a th:href="@{'/remove-users?usersId=' + ${users.id}}" class="floating-button-delete">Delete</a>
-        <a th:href="@{'/update-u/'+ ${next_user_id}}" type="submit" class="floating-button">Next user</a>
+        <a th:if="${next_user_id != null}" th:href="@{'/update-u/'+ ${next_user_id}}" type="submit" class="floating-button">Next user</a>
     </div>
     <br><br><br>
 </div>

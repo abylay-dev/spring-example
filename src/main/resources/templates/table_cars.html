@@ -30,7 +30,7 @@
         </tbody>
     </table>
     <div class="button-pos">
-    <a th:href="@{'/add-cars-page'}" class="floating-button">Add new car</a>
+    <a sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')" th:href="@{'/add-cars-page'}" class="floating-button">Add new car</a>
     <a href="/" class="floating-button">Go back to main page</a>
     </div>
     </form>

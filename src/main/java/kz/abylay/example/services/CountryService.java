@@ -8,4 +8,10 @@ public interface CountryService {
     List<Country> getAllCountry();
 
     Country getCountryById(Integer id);
+
+    void addCountry(Country c);
+
+    void updateCountry(Country c);
+
+    void deleteCountry(Integer id);
 }

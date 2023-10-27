@@ -12,4 +12,6 @@ public interface CarsService {
     void updateCars(Cars c);
     void deleteCars(Integer id);
 
+    List<Cars> findCars(String mark);
+
 }

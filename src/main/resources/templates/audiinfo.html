@@ -51,11 +51,36 @@
             <div class="button-pos">
                 <a href="" class="sliding-button" th:href="@{'/'}">Back to main page</a>
                 <a href="" class="sliding-button" th:href="@{'/mercedes-information'}">Previous car</a>
-                <a href="" class="sliding-button" th:href="@{'/update/3'}">Update cars</a>
+                <a sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')" class="sliding-button" th:href="@{'/update/3'}">Update cars</a>
                 <a href="" class="sliding-button" th:href="@{'/porsche-information'}">Next car</a>
             </div>
             <br><br>
         </div>
     </div>
+    <form th:action="@{'/audi-information'}" method="get">
+        <table class="table table-striped">
+            <div class="colll">
+                <thead>
+                <tr>
+                    <th scope="col" style="color: #ffffff">#</th>
+                    <th scope="col" style="color: #ffffff">Name</th>
+                    <th scope="col" style="color: #ffffff">Model</th>
+                    <th scope="col" style="color: #ffffff">Tank</th>
+                    <th scope="col" style="color: #ffffff">Country</th>
+                </tr>
+                </thead>
+            </div>
+            <tbody>
+            <tr th:each="car: ${carsAudi}">
+                <th scope="row" th:text="${i}" style="color: antiquewhite"></th>
+                <td th:text="${car.name}" style="color: ghostwhite"></td>
+                <td th:text="${car.model}" style="color: floralwhite"></td>
+                <td th:text="${car.getTank()}" style="color: whitesmoke"></td>
+                <td th:text="${car.getCountry().getNameofcountry()}" style="color: white"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <br><br><br><br>
 </div>
 </html>

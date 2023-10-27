@@ -6,6 +6,7 @@ import kz.abylay.example.services.MarketplaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -15,7 +16,12 @@ public class MarketplaceServiceImp implements MarketplaceService {
     public MarketplaceRepository marketplaceRepository;
     @Override
     public List<Marketplace> getAllMarketplace() {
-        return marketplaceRepository.findAll();
+        return marketplaceRepository.findAll().stream().sorted(new Comparator<Marketplace>() {
+            @Override
+            public int compare(Marketplace o1, Marketplace o2) {
+                return o1.getId() - o2.getId();
+            }
+        }).toList();
     }
 
     @Override

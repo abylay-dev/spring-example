@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
 public interface CarsRepository extends JpaRepository<Cars, Long> {
-
+    List<Cars> findCarsByNameOrderById(String name);
 }

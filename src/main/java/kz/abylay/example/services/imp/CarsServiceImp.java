@@ -1,13 +1,12 @@
 package kz.abylay.example.services.imp;
 
-import kz.abylay.example.DBManager;
 import kz.abylay.example.model.Cars;
 import kz.abylay.example.repository.CarsRepository;
 import kz.abylay.example.services.CarsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -40,4 +39,7 @@ public class CarsServiceImp implements CarsService {
         carsRepository.deleteById(Long.valueOf(id));
     }
 
+    public List<Cars> findCars(String mark){
+        return carsRepository.findCarsByNameOrderById(mark);
+    }
 }

@@ -3,10 +3,10 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       layout:decorate="~{layout/main}">
 <div layout:fragment="main_content">
-    <form th:action="@{'/add-marketplaces'}" method="post">
-        <p class="namepage">Add marketplace page</p>
+    <form th:action="@{'/add-country'}" method="post">
+        <p class="namepage">Add country page</p>
         <div class="inputbox2">
-            <label>Market place :
+            <label>Country :
                 <input type="text" name="name" autocomplete="off" required>
             </label>
         </div><br>

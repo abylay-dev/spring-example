@@ -17,4 +17,5 @@ public class Marketplace {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String marketname;
+
 }
