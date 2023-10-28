@@ -7,6 +7,7 @@ import kz.abylay.example.repository.RoleRepository;
 import kz.abylay.example.repository.UserRepository;
 import kz.abylay.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,7 +29,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public List<Users> getAllUsers() {
-        return userRepository.findAll();
+        return userRepository.findAll(Sort.by(Sort.Order.asc("id")));
     }
 
     @Override
@@ -47,11 +48,14 @@ public class UserServiceImp implements UserService {
             throw new RoleNotFoundException("USER role not found");
         }
 
-        if (u.getPassword().equals(u.getRePassword())){
+
+        if (u.getPassword() != null && u.getRePassword() != null && u.getPassword().equals(u.getRePassword())){
             u.setPassword(passwordEncoder.encode(u.getPassword()));
-            u.setRole(userRole);
-            userRepository.save(u);
+        } else {
+            u.setPassword("123");
         }
+        u.setRole(userRole);
+        userRepository.save(u);
     }
 
     @Override

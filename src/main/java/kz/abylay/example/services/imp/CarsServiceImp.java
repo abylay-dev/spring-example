@@ -4,6 +4,7 @@ import kz.abylay.example.model.Cars;
 import kz.abylay.example.repository.CarsRepository;
 import kz.abylay.example.services.CarsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -16,7 +17,7 @@ public class CarsServiceImp implements CarsService {
 
     @Override
     public List<Cars> getAllCars() {
-        return carsRepository.findAll();
+        return carsRepository.findAll(Sort.by(Sort.Order.asc("id")));
     }
 
     @Override

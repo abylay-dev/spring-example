@@ -44,10 +44,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authConfig -> {
                     authConfig.requestMatchers(HttpMethod.GET, "/authorize/**", "/error", "/logout").permitAll();
                     authConfig.requestMatchers(HttpMethod.POST, "/users/add-user").permitAll();
-                    authConfig.requestMatchers(HttpMethod.POST, "/add-cars", "/update-users", "/add-user", "/update-cars","/update-marketplace", "/update-marketplace-page").hasAnyRole("ADMIN","MODERATOR");
-                    authConfig.requestMatchers(HttpMethod.GET, "/", "/cars/table-cars", "/bmw-information", "/mercedes-information", "/audi-information", "/porsche-information").hasAnyRole("USER", "ADMIN", "MODERATOR");
+                    authConfig.requestMatchers(HttpMethod.POST, "/add-cars", "/users/update-users", "/users/add-user",  "/update-cars","/update-marketplace", "/update-marketplace-page").hasAnyRole("ADMIN","MODERATOR");
+                    authConfig.requestMatchers(HttpMethod.GET, "/", "/table-cars", "/bmw-information", "/mercedes-information", "/audi-information", "/porsche-information").hasAnyRole("USER", "ADMIN", "MODERATOR");
                     authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/remove-marketplace", "/delete",  "/remove-users","/delete-marketplace").hasAnyRole("ADMIN");
-                    authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/add-cars-page", "/update/{id}", "/admins-panel", "/add-users", "/update-u/{id}", "/update-user-page", "/update-users", "/add-user-page").hasAnyRole("MODERATOR", "ADMIN");
+                    authConfig.requestMatchers(HttpMethod.GET, "/add-marketplace", "/add-cars-page", "/update/{id}", "/admins-panel", "/update-u/{id}", "/update-user-page", "/update-users", "/users/add-user-page").hasAnyRole("MODERATOR", "ADMIN");
                     authConfig.anyRequest().authenticated();
                 })
                 .formLogin(login -> {

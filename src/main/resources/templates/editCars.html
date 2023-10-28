@@ -25,13 +25,13 @@
                 <option th:each="country: ${countries}" th:selected="${country.getId()}==${cars.getCountry().getId()}" th:text="${country.getNameofcountry()}" th:value="${country.getId()}"></option>
             </select>
         </div>
-    </form>
 
-    <div class="button-pos">
-        <button type="submit" class="floating-button">Save Changes</button>
-        <a th:href="@{'/delete?carsId=' + ${cars.id}}" class="floating-button-delete">Delete</a>
-        <a th:href="@{'/update/'+ ${next_car_id}}" type="submit" class="floating-button">Next car</a>
-    </div>
+        <div class="button-pos">
+            <button type="submit" class="floating-button">Save Changes</button>
+            <a th:href="@{'/delete?carsId=' + ${cars.id}}" class="floating-button-delete">Delete</a>
+            <a th:href="@{'/update/'+ ${next_cars_id}}" type="submit" class="floating-button">Next car</a>
+        </div>
+    </form>
 
     <table class="table table-striped">
         <thead>

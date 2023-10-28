@@ -4,17 +4,17 @@
 <div layout:fragment="main_content">
     <p class="namepage">Edit marketplace page</p>
     <form th:action="@{'/update-country-page'}" method="post">
-        <input type="number" name="id" hidden th:value="${marketplace.id}">
+        <input type="number" name="id" hidden th:value="${countries.id}">
         <div class="inputbox2">
-            <label for="name">Marketplace :</label>
-            <input type="text" id="name" th:value="${marketplace.getMarketname()}">
+            <label for="name">Country :</label>
+            <input type="text" id="name" th:value="${countries.getNameofcountry()}">
         </div><br>
     </form>
 
     <div class="button-pos">
         <button type="submit" class="floating-button">Save Changes</button>
-        <a th:href="@{'/delete-marketplace?marketplaceId=' + ${marketplace.id}}" class="floating-button-delete">Delete</a>
-        <a th:href="@{'/update-marketplace-pagebyid/'+ ${next_marketplace_id}}" type="submit" class="floating-button">Next marketplace</a>
+        <a th:href="@{'/delete-country?countriesId=' + ${countries.id}}" class="floating-button-delete">Delete</a>
+        <a th:if="${next_country_id != null}" th:href="@{'/update-marketplace-pagebyid/'+ ${next_country_id}}" type="submit" class="floating-button">Next country</a>
     </div>
     <br><br><br>
 </div>

@@ -72,7 +72,7 @@
             </div>
             <tbody>
             <tr th:each="car: ${carsAudi}">
-                <th scope="row" th:text="${i}" style="color: antiquewhite"></th>
+                <th scope="row" th:text="${carsAudi.indexOf(car)+1}" style="color: antiquewhite"></th>
                 <td th:text="${car.name}" style="color: ghostwhite"></td>
                 <td th:text="${car.model}" style="color: floralwhite"></td>
                 <td th:text="${car.getTank()}" style="color: whitesmoke"></td>

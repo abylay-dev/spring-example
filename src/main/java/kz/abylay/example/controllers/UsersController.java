@@ -1,6 +1,7 @@
 package kz.abylay.example.controllers;
 
 import kz.abylay.example.model.Cars;
+import kz.abylay.example.model.Role;
 import kz.abylay.example.model.Users;
 import kz.abylay.example.services.RoleService;
 import kz.abylay.example.services.UserService;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.relation.RoleNotFoundException;
+import java.nio.DoubleBuffer;
 
 @Controller
 @RequestMapping("/users")
@@ -23,45 +25,41 @@ public class UsersController {
     }
 
     @PostMapping("/update-users")
-    public String update(@RequestParam("userId") Integer userId,
-                          @RequestParam("userName") String userName,
-                          @RequestParam("userSurname") String userSurname,
-                          @RequestParam("userEmail") String userEmail,
-                          @RequestParam("userEmailPass") String userEmailPass){
-        Users user = userService.getUserById(userId);
-        if (user != null) {
-            Users u = new Users(userId, userName, userSurname, userEmail, userEmailPass);
-            userService.updateUser(u);
-            return "redirect:/adminspanel";
+    public String update(@RequestParam("id") Integer id,
+                          @RequestParam("name") String name,
+                          @RequestParam("surname") String surname,
+                          @RequestParam("age") Integer age,
+                          @RequestParam("email") String email,
+                          @RequestParam("balance") Double balance,
+                          @RequestParam("roleId") Integer roleId
+    ){
+        Role role = roleService.getRoleById(roleId);
+        if (role != null) {
+            Users user = userService.getUserById(id);
+            if (user != null) {
+                Users u = new Users(id, name, surname, age, email, balance, role);
+                userService.updateUser(u);
+                return "redirect:/admin-panel";
+            }
         }
-        return "redirect:/update-u/" + userId;
+        return "redirect:/update-u/" + id;
     }
     @GetMapping("/update-u/{id}")
     public String getUpdatePage(@PathVariable("id") Integer id, Model model){
         Users u = userService.getUserById(id);
-        model.addAttribute("users", u);
+        model.addAttribute("roles", roleService.getAllRoles());
+        model.addAttribute("user", u);
         if (userService.getUserById(++id) != null) {
             model.addAttribute("next_user_id", id);
         }
         return "editUsers";
     }
 
-    @GetMapping("/update-user-page")
-    public String updateUserPage(Model model){
+    @GetMapping("/add-user-page")
+    public String addUserPage(Model model){
         model.addAttribute("roles", roleService.getAllRoles());
-        return "editUsers";
-    }
-
-    /*@GetMapping("/add-user-page")
-    public String addUserPage(@RequestParam("firstname") String firstname,
-                              @RequestParam("lastname") String lastname,
-                              @RequestParam("age") Integer age,
-                              @RequestParam("email") String email,
-                              @RequestParam("balance") Double balance,
-                              @RequestParam("role") Integer roleId){
-        userService.addUser(new Users(firstname,lastname,age,email,balance,roleId));
         return "addusers";
-    }*/
+    }
 
     @PostMapping("/add-user")
     public String addUsers(@RequestParam("firstname") String firstname,
@@ -73,13 +71,16 @@ public class UsersController {
                            @RequestParam(value = "rePassword", defaultValue = "123") String  rePassword,
                            @RequestParam(value = "roleId", defaultValue = "-1") Integer roleId) throws RoleNotFoundException {
         userService.addUser(new Users(null, firstname, lastname, age, email, password, balance, rePassword), roleId);
-        return "redirect:/";
+        if (roleId == -1){
+            return "redirect:/authorize/login";
+        }
+        return "redirect:/admin-panel";
     }
 
     @GetMapping("/remove-users")
     public String removeUser(@RequestParam("user_id")Integer userId){
         userService.deleteUser(userId);
-        return "redirect:/index";
+        return "redirect:/admin-panel";
     }
 
 }

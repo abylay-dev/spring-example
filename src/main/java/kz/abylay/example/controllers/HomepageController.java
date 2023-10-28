@@ -27,12 +27,16 @@ public class HomepageController {
     }
 
     @GetMapping("/bmw-information")
-    public String bmw(){
+    public String bmw(Model model){
+        model.addAttribute("i", 1);
+        model.addAttribute("carsBmw", carsService.findCars("BMW"));
         return "bmwinfo";
     }
 
     @GetMapping("/mercedes-information")
-    public String mercedes(){
+    public String mercedes(Model model){
+        model.addAttribute("i", 1);
+        model.addAttribute("carsMercedes", carsService.findCars("Mercedes"));
         return "mercedesinfo";
     }
 
@@ -44,7 +48,9 @@ public class HomepageController {
     }
 
     @GetMapping("/porsche-information")
-    public String porsche(){
+    public String porsche(Model model){
+        model.addAttribute("i", 1);
+        model.addAttribute("carsPorsche", carsService.findCars("Porsche"));
         return "porscheinfo";
     }
 

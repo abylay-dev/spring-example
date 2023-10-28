@@ -54,7 +54,7 @@
           <td th:text="${user.getAge()}" style="color: whitesmoke"></td>
           <td th:text="${user.getBalance()}" style="color: white"></td>
           <td class="colll">
-            <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/update-user/' + ${user.getId()}}" class="glow-button">Update</a>
+            <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/users/update-u/' + ${user.getId()}}" class="glow-button">Update</a>
           </td>
         </tr>
         </tbody>
@@ -100,7 +100,7 @@
           <th scope="row" th:text="${countries.getId()}" style="color: antiquewhite"></th>
           <td th:text="${countries.getNameofcountry()}" style="color: ghostwhite"></td>
           <td class="colll">
-            <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/update-country/' + ${countries.getId()}}" class="glow-button">Update</a>
+            <a sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/update-country-page/' + ${countries.getId()}}" class="glow-button">Update</a>
           </td>
         </tr>
         </tbody>

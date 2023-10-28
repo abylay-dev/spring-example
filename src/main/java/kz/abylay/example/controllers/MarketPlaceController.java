@@ -59,9 +59,7 @@ public class MarketPlaceController {
     @GetMapping("/update-marketplace-pagebyid/{id}")
     public String getUpdateMPage(@PathVariable("id") Integer id, Model model){
         Marketplace m = marketplaceService.getMarketplaceById(id);
-        Country c = countryService.getCountryById(id);
         model.addAttribute("marketplace", m);
-        model.addAttribute("country", c);
         if (marketplaceService.getMarketplaceById(++id) != null) {
             model.addAttribute("next_marketplace_id", id);
         }

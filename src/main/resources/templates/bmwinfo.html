@@ -46,5 +46,30 @@
             <br><br>
         </div>
     </div>
+    <form th:action="@{'/bmw-information'}" method="get">
+        <table class="table table-striped">
+            <div class="colll">
+                <thead>
+                <tr>
+                    <th scope="col" style="color: #ffffff">#</th>
+                    <th scope="col" style="color: #ffffff">Name</th>
+                    <th scope="col" style="color: #ffffff">Model</th>
+                    <th scope="col" style="color: #ffffff">Tank</th>
+                    <th scope="col" style="color: #ffffff">Country</th>
+                </tr>
+                </thead>
+            </div>
+            <tbody>
+            <tr th:each="car: ${carsBmw}">
+                <th scope="row" th:text="${carsBmw.indexOf(car)+1}" style="color: antiquewhite"></th>
+                <td th:text="${car.name}" style="color: ghostwhite"></td>
+                <td th:text="${car.model}" style="color: floralwhite"></td>
+                <td th:text="${car.getTank()}" style="color: whitesmoke"></td>
+                <td th:text="${car.getCountry().getNameofcountry()}" style="color: white"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <br><br><br><br>
 </div>
 </html>

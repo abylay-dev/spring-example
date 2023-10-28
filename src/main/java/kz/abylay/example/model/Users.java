@@ -25,12 +25,6 @@ public class Users {
     @Transient
     private String rePassword;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private  Country country;
-
-    @ManyToMany
-    private List<Marketplace> marketplaces;
-
     @ManyToOne
     private Role role;
 
@@ -45,7 +39,14 @@ public class Users {
         this.rePassword = rePassword;
     }
 
-    public Users(Integer userId, String userName, String userSurname, String userEmail, String userEmailPass) {
+    public Users(Integer id, String firstname, String lastname, Integer age, String email, Double balance, Role role) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.email = email;
+        this.balance = balance;
+        this.role = role;
     }
 }
 
